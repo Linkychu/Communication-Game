@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Extensions : MonoBehaviour
+public static class Extensions
 {
-    // Start is called before the first frame update
-    void Start()
+    
+    public static void Shuffle<T>(this IList<T> list)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = SeededRandom.random.Next(n+ 1);
+            (list[k], list[n]) = (list[n], list[k]);
+        }
     }
 }
