@@ -3,23 +3,34 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - CinemachineTarget
+  - PillarSpawn
+  - Pillar
+  - Rooms
+  - BossDoor
+  - Item
+  - StairSpawn
+  - WallP
+  - CrossRoad
+  - Tjunction
+  - Corner
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
+  - Pillar
+  - Wall
+  - 
+  - Boss
+  - 
+  - Room
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - BossEntrance
   - 
   - 
   - 
