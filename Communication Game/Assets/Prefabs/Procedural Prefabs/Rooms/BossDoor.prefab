@@ -1099,7 +1099,7 @@ GameObject:
   - component: {fileID: 8559775464154818890}
   m_Layer: 14
   m_Name: Cube
-  m_TagString: BossDoor
+  m_TagString: BossKeyDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -109,7 +109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 335656406336844101}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9589c0ee0de64578a8c2a1a1386b7e1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 30b3528651fd07947854d383b098c3d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bossMask:
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2205902404359182331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9589c0ee0de64578a8c2a1a1386b7e1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 30b3528651fd07947854d383b098c3d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bossMask:
@@ -721,7 +721,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9002031716487158719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9589c0ee0de64578a8c2a1a1386b7e1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 30b3528651fd07947854d383b098c3d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bossMask:

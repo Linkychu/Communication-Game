@@ -652,7 +652,7 @@ public class Maze : MonoBehaviour
         PlacePlayer();
         GenerateStairCase();
         BakeLighting();
-        StartCoroutine(BakeNavmesh());
+        //StartCoroutine(BakeNavmesh());
 
         
 
@@ -816,9 +816,8 @@ public class Maze : MonoBehaviour
                     }
                     
                     player.position = (new Vector3(x * scale, player.transform.position.y, z * scale));
-                    
-                    playerpositionref = player.position; 
-                    player.gameObject.SetActive(false);
+
+                    playerpositionref = player.position;
                     return;
                 }
             }

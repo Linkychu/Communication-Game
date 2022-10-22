@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7580713522716341566}
   - component: {fileID: 6930078042121734119}
-  - component: {fileID: 212001942078397134}
+  - component: {fileID: 3622026070372606574}
   m_Layer: 0
   m_Name: Pillar (2)
   m_TagString: PillarSpawn
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772323354229062242}
   m_Mesh: {fileID: 4300000, guid: b520dd2e830b53248a9a07d2d9f3f3dd, type: 3}
---- !u!114 &212001942078397134
+--- !u!114 &3622026070372606574
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 772323354229062242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 418c6ef1b1b03f84ab1c8f428c1c4f77, type: 3}
+  m_Script: {fileID: 11500000, guid: 068d58431931a604fabb64906052415b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pillar: {fileID: 5045349165014527288, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7861664946442353517}
   - component: {fileID: 7206517063608781236}
-  - component: {fileID: 2529915532463894838}
+  - component: {fileID: 1395703146501675835}
   m_Layer: 0
   m_Name: Pillar (3)
   m_TagString: PillarSpawn
@@ -99,7 +99,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052139903176438833}
   m_Mesh: {fileID: 4300000, guid: b520dd2e830b53248a9a07d2d9f3f3dd, type: 3}
---- !u!114 &2529915532463894838
+--- !u!114 &1395703146501675835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1052139903176438833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 418c6ef1b1b03f84ab1c8f428c1c4f77, type: 3}
+  m_Script: {fileID: 11500000, guid: 068d58431931a604fabb64906052415b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pillar: {fileID: 5045349165014527288, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
@@ -308,7 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6217018590659790366}
   - component: {fileID: 6872430306954163399}
-  - component: {fileID: 942285785104458296}
+  - component: {fileID: 6208056396469617370}
   m_Layer: 0
   m_Name: Pillar (5)
   m_TagString: PillarSpawn
@@ -339,7 +339,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3874367056015558978}
   m_Mesh: {fileID: 4300000, guid: b520dd2e830b53248a9a07d2d9f3f3dd, type: 3}
---- !u!114 &942285785104458296
+--- !u!114 &6208056396469617370
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -348,7 +348,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3874367056015558978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 418c6ef1b1b03f84ab1c8f428c1c4f77, type: 3}
+  m_Script: {fileID: 11500000, guid: 068d58431931a604fabb64906052415b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pillar: {fileID: 5045349165014527288, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
@@ -465,7 +465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2339452481901135110}
   - component: {fileID: 2985860340483946463}
-  - component: {fileID: 6579584872355598553}
+  - component: {fileID: 7015131539656285856}
   m_Layer: 0
   m_Name: Pillar (4)
   m_TagString: PillarSpawn
@@ -496,7 +496,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4896726249060289114}
   m_Mesh: {fileID: 4300000, guid: b520dd2e830b53248a9a07d2d9f3f3dd, type: 3}
---- !u!114 &6579584872355598553
+--- !u!114 &7015131539656285856
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -505,7 +505,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4896726249060289114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 418c6ef1b1b03f84ab1c8f428c1c4f77, type: 3}
+  m_Script: {fileID: 11500000, guid: 068d58431931a604fabb64906052415b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pillar: {fileID: 5045349165014527288, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}

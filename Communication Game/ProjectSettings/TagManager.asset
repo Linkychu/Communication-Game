@@ -15,6 +15,7 @@ TagManager:
   - CrossRoad
   - Tjunction
   - Corner
+  - BossKeyDoor
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - 
   - 
   - BossEntrance
-  - 
+  - Chest
   - 
   - 
   - 

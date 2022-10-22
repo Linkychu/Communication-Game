@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6568793698938412864}
   - component: {fileID: 4103675206211775782}
   - component: {fileID: 6981221637908186251}
-  - component: {fileID: 9079714283421518338}
+  - component: {fileID: 2704439238933226749}
   m_Layer: 7
   m_Name: Wall_Entrance (3)
   m_TagString: Untagged
@@ -100,7 +100,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: ce8cc834ba277844da67143cfc370fa8, type: 3}
---- !u!114 &9079714283421518338
+--- !u!114 &2704439238933226749
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,12 +109,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 488083348753932442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9589c0ee0de64578a8c2a1a1386b7e1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 30b3528651fd07947854d383b098c3d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bossMask:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 16896
 --- !u!1 &916383528525279269
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 6531933573184731223}
   - component: {fileID: 7931585512511105139}
   - component: {fileID: 3762617619496275249}
-  - component: {fileID: 851560551849753841}
+  - component: {fileID: 4701121230603437704}
   m_Layer: 7
   m_Name: Wall_Entrance (2)
   m_TagString: Untagged
@@ -215,7 +215,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: ce8cc834ba277844da67143cfc370fa8, type: 3}
---- !u!114 &851560551849753841
+--- !u!114 &4701121230603437704
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -224,12 +224,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 916383528525279269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9589c0ee0de64578a8c2a1a1386b7e1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 30b3528651fd07947854d383b098c3d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bossMask:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 16896
 --- !u!1 &1823144635415697500
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,28 +833,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2704239378004140644, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
   m_PrefabInstance: {fileID: 2632050831341015483}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7098308653875952771 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5045349165014527288, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
-  m_PrefabInstance: {fileID: 2632050831341015483}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2604116853386665400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7098308653875952771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 418c6ef1b1b03f84ab1c8f428c1c4f77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pillar: {fileID: 5045349165014527288, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
-  size: 3
-  pillarMask:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!1001 &3392110761261343065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -941,28 +919,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2704239378004140644, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
   m_PrefabInstance: {fileID: 3392110761261343065}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7572693468372405345 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5045349165014527288, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
-  m_PrefabInstance: {fileID: 3392110761261343065}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2719919144020006672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572693468372405345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 418c6ef1b1b03f84ab1c8f428c1c4f77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pillar: {fileID: 5045349165014527288, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
-  size: 3
-  pillarMask:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!1001 &7736857078682156591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1044,28 +1000,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
---- !u!1 &3268057318391141143 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5045349165014527288, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
-  m_PrefabInstance: {fileID: 7736857078682156591}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6279602212276647487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3268057318391141143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 418c6ef1b1b03f84ab1c8f428c1c4f77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pillar: {fileID: 5045349165014527288, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
-  size: 3
-  pillarMask:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!4 &5681772410884299851 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2704239378004140644, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
@@ -1152,28 +1086,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
---- !u!1 &3757609100708363871 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5045349165014527288, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
-  m_PrefabInstance: {fileID: 8223884923333645159}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7304940433860476482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3757609100708363871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 418c6ef1b1b03f84ab1c8f428c1c4f77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pillar: {fileID: 5045349165014527288, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
-  size: 3
-  pillarMask:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!4 &6315868185844347139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2704239378004140644, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}
