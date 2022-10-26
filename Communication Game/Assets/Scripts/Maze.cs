@@ -48,7 +48,7 @@ public class Maze : MonoBehaviour
     public Vector2Int size = new Vector2Int(30, 30);
     public byte[,] map;
     public int scale = 6;
-    public Transform player;
+    public Transform[] players;
     public int roomCount = 5;
     public Vector2Int roomCountSize = new Vector2Int(3, 6);
     public bool finishedLoadingMap = false;
@@ -685,7 +685,10 @@ public class Maze : MonoBehaviour
                 astar = BossRoom.transform;
                 finished = true;
                 validPath = true;
-                player.gameObject.SetActive(true);
+                foreach (var player in players)
+                {
+                    player.gameObject.SetActive(true);
+                }
                 //Debug.Log(Colliders.Count);
             }
 
@@ -807,18 +810,21 @@ public class Maze : MonoBehaviour
             {
                 if (map[x, z] == 0)
                 {
-                    Collider[] chests = new Collider[1];
-                    int amount = Physics.OverlapBoxNonAlloc(new Vector3(x * scale, player.position.y, z * scale),
-                        Vector3.one * 3, chests, Quaternion.identity, chestLayer);
-                    if(amount != 0)
+                    for (int index = 0; index < players.Length; index++)
                     {
-                        Destroy(chests[0].gameObject);
-                    }
-                    
-                    player.position = (new Vector3(x * scale, player.transform.position.y, z * scale));
+                        var player = players[index];
+                        Collider[] chests = new Collider[1];
+                        int amount = Physics.OverlapBoxNonAlloc(new Vector3(x * scale * index, player.position.y, z * scale),
+                            Vector3.one * 3, chests, Quaternion.identity, chestLayer);
+                        if (amount != 0)
+                        {
+                            Destroy(chests[0].gameObject);
+                        }
 
-                    playerpositionref = player.position;
-                    return;
+                        player.position = (new Vector3(x * scale + index, player.transform.position.y, z * scale));
+
+                        playerpositionref = player.position;
+                    }
                 }
             }
         }

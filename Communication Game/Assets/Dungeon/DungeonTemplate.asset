@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: DungeonTemplate
   m_EditorClassIdentifier: 
   VerticalStraight:
-    prefab: {fileID: 6071347243314199431, guid: 60763a35aec1ee04e93022ce6187e65d, type: 3}
+    prefab: {fileID: 1556496523006020434, guid: e42f669039b176241ba53afdc0232b79, type: 3}
     rotation: {x: 0, y: 90, z: 0}
   HorizontalStraight:
-    prefab: {fileID: 6071347243314199431, guid: 60763a35aec1ee04e93022ce6187e65d, type: 3}
+    prefab: {fileID: 1556496523006020434, guid: e42f669039b176241ba53afdc0232b79, type: 3}
     rotation: {x: 0, y: 0, z: 0}
   CrossRoad:
-    prefab: {fileID: 5463772324748348702, guid: abb98760bda50224e9a14a6c4321cea6, type: 3}
+    prefab: {fileID: 2379533742454882971, guid: 15406ea461c96a546afa6cea0c6dbab5, type: 3}
     rotation: {x: 0, y: 0, z: 0}
   RightUpCorner:
     prefab: {fileID: 1823144635415697500, guid: cf5e987ca9890a84bb7173d70958a636, type: 3}
@@ -73,7 +73,7 @@ MonoBehaviour:
     prefab: {fileID: 8622545288010592857, guid: 1d85d7cd4efb6604baa9b1165faf4f9e, type: 3}
     rotation: {x: 0, y: 0, z: 0}
   CeilingPiece:
-    prefab: {fileID: 9123487575950170822, guid: 149a1656c46f9144c9a9571ba20f01be, type: 3}
+    prefab: {fileID: 7932859675831725274, guid: b6aaabbc44fb11e4b9fb357e5fe9abdf, type: 3}
     rotation: {x: 0, y: 0, z: 0}
   Pillar:
     prefab: {fileID: 5045349165014527288, guid: d6ea882d4d18ba74a944733914a6b353, type: 3}

@@ -28,6 +28,10 @@ public class PillarCheck : MonoBehaviour
             GameObject pillarIns = Instantiate(pillar, transform.position, transform.rotation, transform);
             pillarIns.transform.localScale = Vector3.one;
         }
+
+        pillar.GetComponent<Collider>().enabled = false;
+
+        
     }
 }
  

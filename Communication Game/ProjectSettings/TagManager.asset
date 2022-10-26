@@ -16,6 +16,7 @@ TagManager:
   - Tjunction
   - Corner
   - BossKeyDoor
+  - Straight
   layers:
   - Default
   - TransparentFX
@@ -33,10 +34,10 @@ TagManager:
   - 
   - BossEntrance
   - Chest
-  - 
-  - 
-  - 
-  - 
+  - Camera1
+  - Camera2
+  - Player1UI
+  - Player2UI
   - 
   - 
   - 
