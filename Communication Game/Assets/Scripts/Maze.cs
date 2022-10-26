@@ -52,7 +52,6 @@ public class Maze : MonoBehaviour
     public int roomCount = 5;
     public Vector2Int roomCountSize = new Vector2Int(3, 6);
     public bool finishedLoadingMap = false;
-    public bool finishedLoadingItems = false;
     protected List<MapLocation> pillarLocations = new List<MapLocation>();
 
     public List<MapLocation> rooms = new List<MapLocation>();
@@ -75,7 +74,7 @@ public class Maze : MonoBehaviour
 
     public DungeonTemplate TemplateData;
 
-
+    public SpawnItem itemManager;
     public bool GeneratedRooms;
 
     public struct Pieces
@@ -653,7 +652,7 @@ public class Maze : MonoBehaviour
         GenerateStairCase();
         BakeLighting();
         //StartCoroutine(BakeNavmesh());
-
+        itemManager.Generate();
         
 
     }
@@ -813,13 +812,7 @@ public class Maze : MonoBehaviour
                     for (int index = 0; index < players.Length; index++)
                     {
                         var player = players[index];
-                        Collider[] chests = new Collider[1];
-                        int amount = Physics.OverlapBoxNonAlloc(new Vector3(x * scale * index, player.position.y, z * scale),
-                            Vector3.one * 3, chests, Quaternion.identity, chestLayer);
-                        if (amount != 0)
-                        {
-                            Destroy(chests[0].gameObject);
-                        }
+                       
 
                         player.position = (new Vector3(x * scale + index, player.transform.position.y, z * scale));
 
@@ -828,8 +821,9 @@ public class Maze : MonoBehaviour
                 }
             }
         }
+
         
-       // player.gameObject.SetActive(false);
+        finishedLoadingMap = true;
     }
 
 

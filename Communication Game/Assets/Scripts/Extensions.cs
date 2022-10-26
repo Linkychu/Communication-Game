@@ -15,4 +15,23 @@ public static class Extensions
             (list[k], list[n]) = (list[n], list[k]);
         }
     }
+
+    public static int GreatestCommonDenominator(int a, int b)
+    {
+        while (a != 0 && b != 0)
+        {
+            if (a > b)
+            {
+                a %= b;
+            }
+
+            else
+            {
+                b %= a;
+            }
+        }
+
+        return a == 0 ? b : a;
+        
+    }
 }

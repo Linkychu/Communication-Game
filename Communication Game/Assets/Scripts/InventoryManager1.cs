@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -14,26 +15,31 @@ public class InventoryManager1 : MonoBehaviour
 
     private bool canOpenInventory;
 
-    private Player1 playerInput;
+    [HideInInspector]
+    public Player1 playerInput;
 
     private bool inventoryOpen;
 
     private PlayerOneMovement _movement;
 
     public Canvas canvas;
-
-    public Transform inventorySlotManager;
-
+    
     private float screenWidth;
 
+    [SerializeField] private Sprite defaultSprite;
     [Header("InventoryScreen")]
-    private Button[] inventorySlots;
+    public List<Button> inventorySlots = new List<Button>();
+
+    public bool isInteracting;
+
     private void Awake()
     {
         instance = this;
         playerInput = new Player1();
         playerInput.Inventory.OpenInventory.performed += OpenInventory;
         _movement = transform.GetComponentInChildren<PlayerOneMovement>();
+        playerInput.Inventory.Interact.performed += context => isInteracting = true;
+        playerInput.Inventory.Interact.canceled += context => isInteracting = false;
         screenWidth = canvas.worldCamera.pixelWidth;
         ResetInventory();
     }
@@ -76,6 +82,8 @@ public class InventoryManager1 : MonoBehaviour
     {
         canOpenInventory = true;
         inventoryOpen = canvas.gameObject.activeInHierarchy;
+        UpdateInventorySlots();
+        
     }
 
     public void AddItem(ItemClass item, int amount)
@@ -102,6 +110,8 @@ public class InventoryManager1 : MonoBehaviour
         }
 
         player1InventoryRef[item] = Mathf.Clamp(player1InventoryRef[item], 0, 99);
+        Debug.Log($"{item} and its value is {player1InventoryRef[item]}");
+        UpdateInventorySlots();
 
     }
 
@@ -119,9 +129,31 @@ public class InventoryManager1 : MonoBehaviour
         {
             player1Inventory.Remove(item);
         }
+        
+        UpdateInventorySlots();
     }
 
 
+    void UpdateInventorySlots()
+    {
+
+        foreach (var button in inventorySlots)
+        {
+            button.GetComponent<Image>().sprite = defaultSprite;
+            button.interactable = false;
+            button.GetComponentInChildren<TextMeshProUGUI>().text = String.Empty;
+        }
+        if (player1Inventory.Count > 0)
+        {
+            for (int i = 0; i < player1Inventory.Count; i++)
+            {
+                inventorySlots[i].GetComponent<Image>().sprite = player1Inventory[i].image;
+                inventorySlots[i].GetComponentInChildren<TextMeshProUGUI>().text = player1InventoryRef[player1Inventory[i]].ToString();
+                inventorySlots[i].interactable = true;
+
+            }
+        }
+    }
     void OpenInventory(InputAction.CallbackContext context)
     {
         inventoryOpen = !inventoryOpen;
@@ -143,6 +175,7 @@ public class InventoryManager1 : MonoBehaviour
                 
         }
         
+        UpdateInventorySlots();
         canvas.gameObject.SetActive(inventoryOpen);
         
     }

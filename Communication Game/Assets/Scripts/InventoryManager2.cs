@@ -15,7 +15,8 @@ public class InventoryManager2 : MonoBehaviour
 
     private bool canOpenInventory;
 
-    private Player2 playerInput;
+    [HideInInspector]
+    public Player2 playerInput;
 
     private bool inventoryOpen;
 
@@ -25,7 +26,7 @@ public class InventoryManager2 : MonoBehaviour
 
     public Transform inventorySlotManager;
 
-   
+    public bool isInteracting;
 
     [Header("InventoryScreen")]
     private Button[] inventorySlots;
@@ -35,6 +36,8 @@ public class InventoryManager2 : MonoBehaviour
         playerInput = new Player2();
         playerInput.Inventory.OpenInventory.performed += OpenInventory;
         _movement = transform.GetComponentInChildren<PlayerTwoMovement>();
+        playerInput.Inventory.Interact.performed += context => isInteracting = true;
+        playerInput.Inventory.Interact.canceled += context => isInteracting = false;
         ResetInventory();
     }
 
