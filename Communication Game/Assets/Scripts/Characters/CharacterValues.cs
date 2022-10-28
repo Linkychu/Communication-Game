@@ -19,7 +19,8 @@ namespace Player
 
             public int Attack;
             public int Defense;
-            public int Special;
+            public int SpecialAttack;
+            public int SpecialDefence;
             public int Speed;
            
         }

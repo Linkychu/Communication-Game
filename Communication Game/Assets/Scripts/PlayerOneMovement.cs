@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Characters;
+
 public class PlayerOneMovement: MonoBehaviour
 {
     private Player1 player;
@@ -32,6 +34,9 @@ public class PlayerOneMovement: MonoBehaviour
     public bool canMove = true;
 
     private CameraController cameraController;
+
+    public float movementScale = 3;
+    private int baseSpeedRate;
     
     private void Awake()
     {
@@ -94,7 +99,8 @@ public class PlayerOneMovement: MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         cameraController.EnableCameraInput();
-       
+        baseSpeedRate = Mathf.FloorToInt(gameObject.GetComponent<CharacterClass>().charBase.BaseSpeed / 100);
+
     }
 
 
@@ -126,7 +132,7 @@ public class PlayerOneMovement: MonoBehaviour
         
         
         moveVelocityRef = moveDir;
-        rb.AddForce(moveDir, ForceMode.Acceleration);
+        rb.AddForce(moveDir  , ForceMode.Acceleration);
         moveDir = Vector3.zero;
        // moveVelocityRef = moveDir;
         LookAt();

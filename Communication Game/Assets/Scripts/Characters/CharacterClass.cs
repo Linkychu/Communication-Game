@@ -10,18 +10,25 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.VFX;
-
+    
 public interface IDamageable
 {
     void Damage(int damage);
 }
+
+public interface IHealable 
+{
+    void Heal(int amount);
+}
+
 
 public enum StatBoost
 {
     None,
     Attack,
     Defence,
-    Special
+    SpecialAttack,
+    SpecialDefence
 }
 public interface IBoostable
 {
@@ -32,8 +39,9 @@ public class Attributes
 {
     public float A_Modifier;
     public float D_Modifier;
-    public float S_Modifier;
-        
+    public float S_Modifier_A;
+    public float S_Modifier_D;
+
 }
 
 public class CharacterClass : MonoBehaviour, IDamageable
@@ -75,18 +83,13 @@ public class CharacterClass : MonoBehaviour, IDamageable
     void Start()
     {
 
-      
-
-        
-       
-        
         if (!isPlayer && !isSetLevel)
         {
             values.myStats.level = UnityEngine.Random.Range(minLevel, maxLevel);
             level = new Level(values.myStats.level, OnLevelUp);
 
        
-            ModifyStat(attributes, 1, 1, 1);
+            ModifyStat(attributes, 1, 1, 1, 1);
             SetUpCharacter();
            
         }
@@ -125,7 +128,8 @@ public class CharacterClass : MonoBehaviour, IDamageable
         values.myStats.maxMana = LevelUpStats(charBase.BaseManaAmount, values.myStats.level, 10);
         values.myStats.Attack = LevelUpStats(charBase.BaseAttack, values.myStats.level, 5);
         values.myStats.Defense = LevelUpStats(charBase.BaseDefense, values.myStats.level, 5);
-        values.myStats.Special = LevelUpStats(charBase.BaseSpecial, values.myStats.level, 5);
+        values.myStats.SpecialAttack = LevelUpStats(charBase.BaseSpecialAttack, values.myStats.level, 5);
+        values.myStats.SpecialDefence = LevelUpStats(charBase.BaseSpecialDefence, values.myStats.level, 5);
         values.myStats.Speed = LevelUpStats(charBase.BaseSpeed, values.myStats.level, 5);
         Heal(values.myStats.MaxHP);
         HealMana(values.myStats.maxMana);
@@ -212,11 +216,12 @@ public class CharacterClass : MonoBehaviour, IDamageable
     }
 
 
-    protected static void ModifyStat(Attributes Stats, float amountX, float amountY, float amountZ)
+    protected static void ModifyStat(Attributes Stats, float amountX, float amountY, float amountZ1, float amountZ2)
     {
         Stats.A_Modifier = amountX;
         Stats.D_Modifier = amountY;
-        Stats.S_Modifier = amountZ;
+        Stats.S_Modifier_A = amountZ1;
+        Stats.S_Modifier_D = amountZ2;
     }
 
 
@@ -228,8 +233,11 @@ public class CharacterClass : MonoBehaviour, IDamageable
     private void OnEnable()
     {
         
+        
+ 
     }
 
+    
     
     // Update is called once per frame
     void Update()

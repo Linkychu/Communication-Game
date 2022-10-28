@@ -10,7 +10,12 @@ public class GlobalInventoryManager : MonoBehaviour
     public InventoryManager1 p1;
 
     public InventoryManager2 p2;
-
+    public TextAsset receivingText;
+    public TextAsset tradedText;
+    public TextAsset droppedText;
+    public delegate void InputDisplay();
+    
+    
     private void Awake()
     {
         instance = this;
@@ -21,18 +26,37 @@ public class GlobalInventoryManager : MonoBehaviour
         switch (playerState)
         {
             case PlayerState.Player1:
-                p2.AddItem(item, amount);
-                p1.SubtractItem(item, amount);
-                break;
-            case PlayerState.Player2:
                 p1.AddItem(item, amount);
                 p2.SubtractItem(item, amount);
+                DialogueManager.instance.p2.TradedItem(tradedText, "Player 1", item.name, amount);
+                DialogueManager.instance.p1.TradedItem(receivingText, "Player 2", item.name, amount);
+                
+                break;
+            case PlayerState.Player2:
+                p2.AddItem(item, amount);
+                p1.SubtractItem(item, amount);
+                DialogueManager.instance.p1.TradedItem(tradedText, "Player 2", item.name, amount);
+                DialogueManager.instance.p2.TradedItem(receivingText, "Player 1", item.name, amount);
                 break;
             
         }
+        
+        
     }
-    // Start is called before the first frame update
-    void Start()
+
+    public void DropItem(ItemClass item, int amount, PlayerState state)
+    {
+        switch (state)
+        {
+            case PlayerState.Player1:
+                DialogueManager.instance.p1.DisplayNewItem(droppedText, item.name, amount);
+                break;
+            case PlayerState.Player2:
+                DialogueManager.instance.p2.DisplayNewItem(droppedText, item.name, amount);
+                break;
+        }
+    }
+    void Start()    
     {
         
     }

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca0f0d7e52941279c6fbdf244f9ba65, type: 3}
+  m_Name: Healer
+  m_EditorClassIdentifier: 
+  Name: Healer
+  BaseHP: 150
+  BaseAttack: 40
+  BaseDefense: 80
+  BaseSpecialAttack: 40
+  BaseSpecialDefence: 80
+  BaseSpeed: 100
+  BaseManaAmount: 150
+  type: {fileID: 11400000, guid: 364cf131310c8554ca87b92cc3ff7621, type: 2}
+  myStatus: 1
+  BaseClass: 4
+  DeathMessage: {fileID: 0}

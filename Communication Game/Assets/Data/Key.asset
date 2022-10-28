@@ -15,9 +15,10 @@ MonoBehaviour:
   rateOfAppearing: 0
   item: {fileID: 4589622130466654731, guid: 33834b14c181b6a4196a807166b51782, type: 3}
   type: 4
-  description: 
-  image: {fileID: 21300000, guid: 0bf5ecf6420bb06439e245fc58119a4d, type: 3}
+  description: One of two keys to open the boss door
+  image: {fileID: 21300000, guid: 5702c5e74b1243541b783fa9332432cc, type: 3}
   maxAmount: 0
   minAmount: 0
   HealAmount: 0
   Boost: 0
+  canUseItem: 1

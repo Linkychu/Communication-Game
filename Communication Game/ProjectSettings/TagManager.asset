@@ -20,6 +20,9 @@ TagManager:
   - Chest
   - Potion
   - Mana
+  - Infomation
+  - Enemy
+  - Ally
   layers:
   - Default
   - TransparentFX

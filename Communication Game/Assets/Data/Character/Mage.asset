@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca0f0d7e52941279c6fbdf244f9ba65, type: 3}
+  m_Name: Mage
+  m_EditorClassIdentifier: 
+  Name: Mage
+  BaseHP: 80
+  BaseAttack: 40
+  BaseDefense: 80
+  BaseSpecialAttack: 120
+  BaseSpecialDefence: 80
+  BaseSpeed: 100
+  BaseManaAmount: 150
+  type: {fileID: 11400000, guid: 6f2a6788a33248b4f8c8bae7abcfa7ec, type: 2}
+  myStatus: 1
+  BaseClass: 2
+  DeathMessage: {fileID: 0}

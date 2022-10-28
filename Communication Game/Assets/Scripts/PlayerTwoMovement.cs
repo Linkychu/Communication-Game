@@ -31,6 +31,8 @@ public class PlayerTwoMovement: MonoBehaviour
     private CameraController cameraController;
 
     public LayerMask GroundMask;
+
+    private int baseSpeedRate;
     private void Awake()
     {
         player = new Player2();
@@ -71,7 +73,7 @@ public class PlayerTwoMovement: MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         cameraController.EnableCameraInput();
-     
+        baseSpeedRate = gameObject.GetComponent<CharacterClass>().charBase.BaseSpeed / 100;
         
     }
 
@@ -115,8 +117,8 @@ public class PlayerTwoMovement: MonoBehaviour
         float MovementSpeed = isSprinting ? sprintSpeed : speed;
         
         
-        moveDir += GetCameraRight(Camera) * (player.Locomotion.Movement.ReadValue<Vector2>().x * JoystickScale * MovementSpeed);
-        moveDir += GetCameraForward(Camera) * (player.Locomotion.Movement.ReadValue<Vector2>().y * JoystickScale * MovementSpeed);
+        moveDir += GetCameraRight(Camera) * (player.Locomotion.Movement.ReadValue<Vector2>().x * JoystickScale * MovementSpeed * baseSpeedRate);
+        moveDir += GetCameraForward(Camera) * (player.Locomotion.Movement.ReadValue<Vector2>().y * JoystickScale * MovementSpeed * baseSpeedRate);
 
         
 

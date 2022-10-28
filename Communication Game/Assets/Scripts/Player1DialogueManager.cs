@@ -84,6 +84,17 @@ public class Player1DialogueManager : MonoBehaviour
         ContinueStory();
        
     }
+
+    public void TradedItem(TextAsset tradedItem, string TradedPlayer, string itemName, int amount)
+    {
+        currentStory = new Story(tradedItem.text);
+        currentStory.variablesState["TradedPlayer"] = TradedPlayer;
+        currentStory.variablesState["item"] = itemName;
+        currentStory.variablesState["amount"] = amount;
+        isDialoguePlaying = true;
+        dialoguePanel.SetActive(true);
+        ContinueStory();
+    }
     
 
 

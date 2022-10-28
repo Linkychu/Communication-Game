@@ -651,7 +651,7 @@ public class Maze : MonoBehaviour
         PlacePlayer();
         GenerateStairCase();
         BakeLighting();
-        //StartCoroutine(BakeNavmesh());
+        StartCoroutine(BakeNavmesh());
         itemManager.Generate();
         
 
@@ -760,7 +760,7 @@ public class Maze : MonoBehaviour
         if (validPath)
         {
             //PlayerManager.instance.SpawnAllies();
-            SpawnEnemies();
+            //SpawnEnemies();
         }
 
    }

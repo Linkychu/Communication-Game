@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca0f0d7e52941279c6fbdf244f9ba65, type: 3}
+  m_Name: Knight
+  m_EditorClassIdentifier: 
+  Name: Knight
+  BaseHP: 100
+  BaseAttack: 70
+  BaseDefense: 100
+  BaseSpecialAttack: 70
+  BaseSpecialDefence: 100
+  BaseSpeed: 60
+  BaseManaAmount: 80
+  type: {fileID: 11400000, guid: 707252f8938f65f4d901be4f05c3ad8b, type: 2}
+  myStatus: 1
+  BaseClass: 3
+  DeathMessage: {fileID: 0}

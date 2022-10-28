@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb70f27b6dca44a29cbadcec9708c5de, type: 3}
   m_Name: Revive
   m_EditorClassIdentifier: 
-  rateOfAppearing: 5
+  rateOfAppearing: 10
   item: {fileID: 2114655660524153964, guid: cece2f42759137f4f915409d062f5a61, type: 3}
   type: 2
   description: Revives One Party Member
@@ -21,3 +21,4 @@ MonoBehaviour:
   minAmount: 1
   HealAmount: 0
   Boost: 0
+  canUseItem: 1

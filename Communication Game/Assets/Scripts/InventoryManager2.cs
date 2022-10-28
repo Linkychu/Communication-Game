@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class InventoryManager2 : MonoBehaviour
 {
@@ -24,12 +26,16 @@ public class InventoryManager2 : MonoBehaviour
 
     public Canvas canvas;
 
-    public Transform inventorySlotManager;
+    public EventSystem eventSystem;
 
     public bool isInteracting;
 
+    public Sprite defaultSprite;
+    
     [Header("InventoryScreen")]
-    private Button[] inventorySlots;
+    public List<Button> inventorySlots = new List<Button>();
+    
+    
     private void Awake()
     {
         instance = this;
@@ -67,10 +73,12 @@ public class InventoryManager2 : MonoBehaviour
     {
         canOpenInventory = true;
         inventoryOpen = canvas.gameObject.activeInHierarchy;
+        UpdateInventorySlots();
     }
 
     public void AddItem(ItemClass item, int amount)
     {
+        Debug.Log(item);
         if (player2InventoryRef.ContainsKey(item))
         {
             if (player2Inventory.Contains(item))
@@ -94,6 +102,7 @@ public class InventoryManager2 : MonoBehaviour
 
         player2InventoryRef[item] = Mathf.Clamp(player2InventoryRef[item], 0, 99);
 
+       
     }
 
     public void SubtractItem(ItemClass item, int amount)
@@ -110,9 +119,27 @@ public class InventoryManager2 : MonoBehaviour
         {
             player2Inventory.Remove(item);
         }
+        
+       
+    }
+    
+    public bool HasEnoughItem(ItemClass item, int amount)
+    {
+        if (!player2InventoryRef.ContainsKey(item))
+            return false;
+        if (player2InventoryRef[item] < 0)
+            return false;
+        return player2InventoryRef[item] >= amount;
+        
     }
 
 
+    public void CloseInventory()
+    {
+        inventoryOpen = false;
+        _movement.canMove = true;
+        canvas.gameObject.SetActive(inventoryOpen);
+    }
     void OpenInventory(InputAction.CallbackContext context)
     {
         inventoryOpen = !inventoryOpen;
@@ -130,9 +157,32 @@ public class InventoryManager2 : MonoBehaviour
                 
         }
         
+        UpdateInventorySlots();
         canvas.gameObject.SetActive(inventoryOpen);
+        eventSystem.SetSelectedGameObject(inventorySlots[0].gameObject);
         
     }
+    
+     void UpdateInventorySlots()
+        {
+    
+            foreach (var button in inventorySlots)
+            {
+                button.GetComponent<Image>().sprite = defaultSprite;
+                button.interactable = false;
+                button.GetComponentInChildren<TextMeshProUGUI>().text = String.Empty;
+            }
+            if (player2Inventory.Count > 0)
+            {
+                for (int i = 0; i < player2Inventory.Count; i++)
+                {
+                    inventorySlots[i].GetComponent<Image>().sprite = player2Inventory[i].image;
+                    inventorySlots[i].GetComponentInChildren<TextMeshProUGUI>().text = player2InventoryRef[player2Inventory[i]].ToString();
+                    inventorySlots[i].interactable = true;
+    
+                }
+            }
+        }
     
     
 }

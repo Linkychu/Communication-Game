@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb70f27b6dca44a29cbadcec9708c5de, type: 3}
-  m_Name: ShardD
+  m_Name: Special Shard
   m_EditorClassIdentifier: 
   rateOfAppearing: 10
   item: {fileID: 2114655660524153964, guid: cece2f42759137f4f915409d062f5a61, type: 3}
   type: 2
-  description: Boosts Defence of Party Member
-  image: {fileID: 21300000, guid: 5e498191893ae7c4f92e73b7a5d35bc8, type: 3}
+  description: Boosts Special of Party Member
+  image: {fileID: 21300000, guid: 1b677e9c2f3e7374094204647f2be688, type: 3}
   maxAmount: 2
   minAmount: 1
   HealAmount: 0
-  Boost: 2
+  Boost: 3
+  canUseItem: 1

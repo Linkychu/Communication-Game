@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rateOfAppearing: 100
   item: {fileID: 2114655660524153964, guid: cece2f42759137f4f915409d062f5a61, type: 3}
-  type: 0
-  description: 
+  type: 3
+  description: Allows Player to see dungeon Layout
   image: {fileID: 21300000, guid: b8a2fb9e18ef4e64e96e2350a6c23429, type: 3}
   maxAmount: 0
   minAmount: 0

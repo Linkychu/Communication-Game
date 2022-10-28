@@ -89,6 +89,7 @@ public class OpenItem : MonoBehaviour
     IEnumerator OpenChest()
     {
         input = true;
+        item = itemClass.item;
         if (itemGenerated)
         {
             yield return new WaitForSecondsRealtime(0.5f);

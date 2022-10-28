@@ -32,6 +32,8 @@ public class InventoryManager1 : MonoBehaviour
 
     public bool isInteracting;
 
+    
+
     private void Awake()
     {
         instance = this;
@@ -67,9 +69,18 @@ public class InventoryManager1 : MonoBehaviour
         playerInput.Inventory.Enable();
     }
 
+    public void CloseInventory()
+    {
+        inventoryOpen = false;
+        _movement.canMove = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        canvas.gameObject.SetActive(inventoryOpen);
+    }
     private void OnDisable()
     {
         playerInput.Inventory.Disable();
+        
     }
 
     void ResetInventory()
@@ -82,7 +93,7 @@ public class InventoryManager1 : MonoBehaviour
     {
         canOpenInventory = true;
         inventoryOpen = canvas.gameObject.activeInHierarchy;
-        UpdateInventorySlots();
+        
         
     }
 
@@ -110,10 +121,11 @@ public class InventoryManager1 : MonoBehaviour
         }
 
         player1InventoryRef[item] = Mathf.Clamp(player1InventoryRef[item], 0, 99);
-        Debug.Log($"{item} and its value is {player1InventoryRef[item]}");
-        UpdateInventorySlots();
+        
 
     }
+    
+    
 
     public void SubtractItem(ItemClass item, int amount)
     {
@@ -129,9 +141,21 @@ public class InventoryManager1 : MonoBehaviour
         {
             player1Inventory.Remove(item);
         }
-        
-        UpdateInventorySlots();
+       
     }
+
+    public bool HasEnoughItem(ItemClass item, int amount)
+    {
+        if (!player1InventoryRef.ContainsKey(item))
+            return false;
+        if (player1InventoryRef[item] < 0)
+            return false;
+        return player1InventoryRef[item] >= amount;
+        
+    }
+    
+    
+    
 
 
     void UpdateInventorySlots()
