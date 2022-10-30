@@ -497,6 +497,54 @@ public partial class @Player1 : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Combat"",
+            ""id"": ""73e45d92-0e9b-4103-8161-df1a56063867"",
+            ""actions"": [
+                {
+                    ""name"": ""First Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""28b83101-936b-41f9-a04e-30e1a52c18c5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Heavy Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""4225606b-7fb2-4981-9137-f5cd9ffda7b9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(pressPoint=0.8)"",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""535c92b3-d020-415b-8be0-07705013872e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""First Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""279a22a0-36b3-4521-973f-2426e13ecbf8"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Heavy Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -541,6 +589,10 @@ public partial class @Player1 : IInputActionCollection2, IDisposable
         m_UI_MiddleClick = m_UI.FindAction("MiddleClick", throwIfNotFound: true);
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_AnyKey = m_UI.FindAction("AnyKey", throwIfNotFound: true);
+        // Combat
+        m_Combat = asset.FindActionMap("Combat", throwIfNotFound: true);
+        m_Combat_FirstAttack = m_Combat.FindAction("First Attack", throwIfNotFound: true);
+        m_Combat_HeavyAttack = m_Combat.FindAction("Heavy Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -816,6 +868,47 @@ public partial class @Player1 : IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Combat
+    private readonly InputActionMap m_Combat;
+    private ICombatActions m_CombatActionsCallbackInterface;
+    private readonly InputAction m_Combat_FirstAttack;
+    private readonly InputAction m_Combat_HeavyAttack;
+    public struct CombatActions
+    {
+        private @Player1 m_Wrapper;
+        public CombatActions(@Player1 wrapper) { m_Wrapper = wrapper; }
+        public InputAction @FirstAttack => m_Wrapper.m_Combat_FirstAttack;
+        public InputAction @HeavyAttack => m_Wrapper.m_Combat_HeavyAttack;
+        public InputActionMap Get() { return m_Wrapper.m_Combat; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CombatActions set) { return set.Get(); }
+        public void SetCallbacks(ICombatActions instance)
+        {
+            if (m_Wrapper.m_CombatActionsCallbackInterface != null)
+            {
+                @FirstAttack.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnFirstAttack;
+                @FirstAttack.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnFirstAttack;
+                @FirstAttack.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnFirstAttack;
+                @HeavyAttack.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnHeavyAttack;
+                @HeavyAttack.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnHeavyAttack;
+                @HeavyAttack.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnHeavyAttack;
+            }
+            m_Wrapper.m_CombatActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @FirstAttack.started += instance.OnFirstAttack;
+                @FirstAttack.performed += instance.OnFirstAttack;
+                @FirstAttack.canceled += instance.OnFirstAttack;
+                @HeavyAttack.started += instance.OnHeavyAttack;
+                @HeavyAttack.performed += instance.OnHeavyAttack;
+                @HeavyAttack.canceled += instance.OnHeavyAttack;
+            }
+        }
+    }
+    public CombatActions @Combat => new CombatActions(this);
     private int m_KeyboardandMouseSchemeIndex = -1;
     public InputControlScheme KeyboardandMouseScheme
     {
@@ -851,5 +944,10 @@ public partial class @Player1 : IInputActionCollection2, IDisposable
         void OnMiddleClick(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
         void OnAnyKey(InputAction.CallbackContext context);
+    }
+    public interface ICombatActions
+    {
+        void OnFirstAttack(InputAction.CallbackContext context);
+        void OnHeavyAttack(InputAction.CallbackContext context);
     }
 }

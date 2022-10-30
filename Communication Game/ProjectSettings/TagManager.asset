@@ -23,6 +23,8 @@ TagManager:
   - Infomation
   - Enemy
   - Ally
+  - EnemyP
+  - OverworldCam
   layers:
   - Default
   - TransparentFX
@@ -32,9 +34,9 @@ TagManager:
   - UI
   - Pillar
   - Wall
-  - 
+  - Enemy
   - Boss
-  - 
+  - Player
   - Room
   - 
   - 

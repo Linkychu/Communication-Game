@@ -77,8 +77,8 @@ public class CharacterClass : MonoBehaviour, IDamageable
     private GameObject boost;
     [HideInInspector] public bool isStatsBoosted;
 
-    
-    
+
+    public Camera targetCam;
 
     void Start()
     {
@@ -88,18 +88,27 @@ public class CharacterClass : MonoBehaviour, IDamageable
             values.myStats.level = UnityEngine.Random.Range(minLevel, maxLevel);
             level = new Level(values.myStats.level, OnLevelUp);
 
-       
+            
             ModifyStat(attributes, 1, 1, 1, 1);
             SetUpCharacter();
            
         }
+
+        if (!isPlayer)
+        {
+            targetCam = GameObject.FindWithTag("OverworldCam").GetComponent<Camera>();
+        }
+        
         
         
       
         //OnLevelUp();
     }
-    
-    
+
+    public void Revive()
+    {
+        
+    }
 
     public void OnLevelUp()
     {
@@ -244,7 +253,7 @@ public class CharacterClass : MonoBehaviour, IDamageable
     {
         if (!isPlayer)
         {
-            healthBar.LookAt(Camera.main.transform, transform.up);
+            healthBar.LookAt(targetCam.transform, transform.up);
         }
 
         

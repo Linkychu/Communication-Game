@@ -717,7 +717,7 @@ public class Maze : MonoBehaviour
     {
         List<Vector3> enemyPositions = new List<Vector3>();
         for (int i = 0; i < 15; i++)
-        {
+        {   
             int index = SeededRandom.Range(0, rooms.Count);
             int enemyIndex = SeededRandom.Range(0, TemplateData.enemies.Count);
             int RandomValue = SeededRandom.Range(0, 100);
@@ -760,7 +760,7 @@ public class Maze : MonoBehaviour
         if (validPath)
         {
             //PlayerManager.instance.SpawnAllies();
-            //SpawnEnemies();
+            SpawnEnemies();
         }
 
    }

@@ -1,4 +1,6 @@
 ﻿
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -10,7 +12,11 @@ public enum PlayerState
 
 public class PlayerManager : MonoBehaviour
 {
+   
+
+    
     public PlayerState playerState;
-    
-    
+
+
+
 }

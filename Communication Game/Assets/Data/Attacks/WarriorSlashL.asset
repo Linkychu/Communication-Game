@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eda6397cb36ea6943bbb1eabb02323cf, type: 3}
+  m_Name: WarriorSlashL
+  m_EditorClassIdentifier: 
+  baseDamage: 50
+  type: 0
+  affinity: {fileID: 11400000, guid: 707252f8938f65f4d901be4f05c3ad8b, type: 2}
+  manaCost: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
+  range: 3
+  lifetime: 1
+  shouldMove: 0
+  isDynamicRanged: 0
+  model: {fileID: 8433127689277147884, guid: feb1b85ac8f25584185ca1a23b246aba, type: 3}
+  effect: {fileID: 0}

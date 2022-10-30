@@ -95,4 +95,5 @@ MonoBehaviour:
     m_Bits: 128
   BossStairRoom: {fileID: 3453897193734796206, guid: 90cce2741db9f2648bbdb11ef1206268, type: 3}
   BossRoom: {fileID: 0}
-  enemies: []
+  enemies:
+  - {fileID: 11400000, guid: 1bb629e7cf3398b4c864f03c0b94cae6, type: 2}

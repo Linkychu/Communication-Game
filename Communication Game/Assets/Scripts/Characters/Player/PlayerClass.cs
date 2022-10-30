@@ -5,16 +5,19 @@ using Characters;
 using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Level = General.Level;
 
 
 public class PlayerClass : CharacterClass, IDamageable, IHealable, IBoostable
 {
     public delegate void DeathDelegate();
 
+    public PlayerState playerState;
 
     public int Level;
 
+    public DeathDelegate player1deathEvent;
+
+    public DeathDelegate player2deathEvent;
     private void Awake()
     {
         
@@ -29,18 +32,32 @@ public class PlayerClass : CharacterClass, IDamageable, IHealable, IBoostable
         SetUpCharacter();
     }
 
+    
     private void LateUpdate()
     {
        
     }
 
-    public DeathDelegate deathEvent;
+    
     public override void Death()
     {
-        if (deathEvent != null)
+        switch (playerState)
         {
-            deathEvent();
+            case PlayerState.Player1:
+            if (player1deathEvent != null)
+            {
+                player1deathEvent();
+            }
+            break;
+            
+            case PlayerState.Player2: 
+                if (player2deathEvent != null)
+                {
+                    player2deathEvent();
+                }
+                break;
         }
+        
         
         Destroy(gameObject);
     }

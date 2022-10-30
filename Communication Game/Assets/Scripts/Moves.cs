@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.VFX;
+using Characters;
+
 
 public enum MoveType
 {
@@ -17,14 +19,28 @@ public class Moves : ScriptableObject
     public Vector3 rotationOffset;
     public float range;
     public float lifetime;
-        
+    public bool shouldMove;
+    public bool isDynamicRanged;
+    public GameObject model;
+    private CharacterClass user;
     [HideInInspector]
-    public CharacterClass user;
-        
-    /*public void Spawn(Vector3 position, Transform transform)
+    public AttackEffect effect;
+    
+    
+    
+    public void Spawn(Vector3 position, Transform transform, Vector3 rotation)
     {
-        GameObject clone = Instantiate(model, position, Quaternion.Euler(rotationOffset), transform) as GameObject;
-    }*/
+        Moves move = Instantiate(this);
+        var clone = Instantiate(model, position, Quaternion.Euler(rotation + rotationOffset), transform);
+        effect = clone.GetComponent<AttackEffect>();
+        effect.Spawn(move,shouldMove);
+        
+    }
+
+    public void setUser(CharacterClass @class)
+    {
+        effect.SetUser(@class);
+    }
 
         
         
