@@ -51,44 +51,21 @@ public class OpenItem : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(true);
         isOpened = false;
         input = false;
-        GlobalInventoryManager.instance.p1.playerInput.Inventory.Interact.performed += ActionPerformed;
-        GlobalInventoryManager.instance.p2.playerInput.Inventory.Interact.performed += ActionPerformed;
     }
 
-    void ActionPerformed(InputAction.CallbackContext context)
+    public void ActionPerformed(int id, PlayerManager Manager)
     {
-        if(!isPlayerDetected)
-            return;
         if(input)
             return;
+        playerId = id;
+        manager = Manager;
         StartCoroutine(OpenChest());
     }
     
-
-    private void OnTriggerEnter(Collider other)
-    {
-
-        if (other.gameObject.CompareTag("Player"))
-        {
-            isPlayerDetected = other.transform.parent.TryGetComponent(out PlayerManager playerManager);
-            manager = playerManager;
-            switch (playerManager.playerState)
-            {
-                case PlayerState.Player1:
-                    playerId = 1;
-                    break;
-                case PlayerState.Player2:
-                    playerId = 2;
-                    break;
-                default:
-                    playerId = 0;
-                    break;
-            }
-        }
-    }
+    
 
 
-    IEnumerator OpenChest()
+    public IEnumerator OpenChest()
     {
         input = true;
         item = itemClass.item;

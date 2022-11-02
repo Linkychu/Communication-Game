@@ -37,13 +37,13 @@ public class BossAI : MonoBehaviour
     
     public BossStates state;
 
-    public GameObject PunchEffect;
+    public Moves PunchEffect;
     // Start is called before the first frame update
     void Start()
     {
         data = (BossData)Instantiate(data);
         FindObjectOfType<BossTriggerScript>().OnPlayerEnterTrigger += OnPlayerEnterTrigger;
-        _animator.GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
         _animator.speed = 0;
         myClass = GetComponent<BossClass>();
         agent = GetComponent<NavMeshAgent>();
@@ -89,6 +89,8 @@ public class BossAI : MonoBehaviour
         LeftArm.SetUser(myClass);
         RightArm.SetUser(myClass);
         var effect = Instantiate(PunchEffect, playerTarget.position, Quaternion.identity);
+        LeftArm.Spawn(effect, false);
+        RightArm.Spawn(effect, false);
         Destroy(effect, 0.1f);
 
     }

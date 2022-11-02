@@ -43,19 +43,9 @@ public class BossKeyCheckScript : MonoBehaviour
     {
         DialogueManager.instance.p1.DisplayDialogue(dialogue);
         DialogueManager.instance.p2.DisplayDialogue(dialogue);
-        ItemClass Class =
-            GlobalInventoryManager.instance.p1.player1KeyItems.FirstOrDefault(items => items.name == "Key");
-        if(Class != null)
-        {
-            GlobalInventoryManager.instance.p1.SubtractItem(Class, 1);
-        }
-        
-        ItemClass Class2 =
-            GlobalInventoryManager.instance.p2.player2KeyItems.FirstOrDefault(items => items.name == "Key");
-        if(Class2 != null)
-        {
-            GlobalInventoryManager.instance.p2.SubtractItem(Class, 1);
-        }
+        hasOneKey = false;
+        hasTwoKey = false;
         gameObject.SetActive(false);
+        
     }
 }

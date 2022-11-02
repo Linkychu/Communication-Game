@@ -13,6 +13,8 @@ public class GlobalInventoryManager : MonoBehaviour
     public TextAsset receivingText;
     public TextAsset tradedText;
     public TextAsset droppedText;
+
+    public LayerMask chestLayer;
     public delegate void InputDisplay();
     
     

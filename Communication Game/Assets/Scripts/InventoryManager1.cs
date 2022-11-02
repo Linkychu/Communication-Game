@@ -41,6 +41,7 @@ public class InventoryManager1 : MonoBehaviour
     private ItemClass currentSelectedKeyItem;
     private bool firstKeyItem;
     private int currentSelectedKeyItemIndex;
+
     
     private PlayerClass player;
     private void Awake()
@@ -50,12 +51,35 @@ public class InventoryManager1 : MonoBehaviour
         player = GetComponentInChildren<PlayerClass>();
         playerInput.Inventory.OpenInventory.performed += OpenInventory;
         _movement = transform.GetComponentInChildren<PlayerOneMovement>();
-        playerInput.Inventory.Interact.performed += context => isInteracting = true;
-        playerInput.Inventory.Interact.canceled += context => isInteracting = false;
+        playerInput.Inventory.Interact.performed += ActionPerformed;
         playerInput.Inventory.SwapKeyItem.performed += SwapKeyItem;
         playerInput.Inventory.UseKeyItem.performed += UseKeyItem;
         screenWidth = canvas.worldCamera.pixelWidth;
         ResetInventory();
+    }
+
+    private void ActionPerformed(InputAction.CallbackContext obj)
+    {
+        Debug.Log("Pressed");
+        Collider[] chests =
+            Physics.OverlapSphere(player.transform.position, 5, GlobalInventoryManager.instance.chestLayer, QueryTriggerInteraction.Collide);
+        if (chests.Length > 0)
+        {
+            for (int i = 0; i < chests.Length; i++)
+            {
+                Debug.Log("Worked");
+                var pm = player.transform.parent.GetComponent<PlayerManager>();
+                Debug.Log("Recieved");
+                chests[i].GetComponent<OpenItem>().ActionPerformed(1, pm);
+
+            }
+            
+        }
+
+        else
+        {
+            return;
+        }
     }
 
     private void Update()
@@ -111,6 +135,7 @@ public class InventoryManager1 : MonoBehaviour
         UpdateInventorySlots();
 
     }
+    
 
     public void AddItem(ItemClass item, int amount)
     {

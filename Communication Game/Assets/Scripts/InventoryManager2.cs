@@ -46,6 +46,7 @@ public class InventoryManager2 : MonoBehaviour
     private int currentSelectedKeyItemIndex;
     
     private PlayerClass player;
+    [SerializeField]private LayerMask chestLayer;
     
     private void Awake()
     {
@@ -54,11 +55,32 @@ public class InventoryManager2 : MonoBehaviour
         playerInput.Inventory.OpenInventory.performed += OpenInventory;
         player = GetComponentInChildren<PlayerClass>();
         _movement = transform.GetComponentInChildren<PlayerTwoMovement>();
-        playerInput.Inventory.Interact.performed += context => isInteracting = true;
-        playerInput.Inventory.Interact.canceled += context => isInteracting = false;
+        playerInput.Inventory.Interact.performed += ActionPerformed;
         playerInput.Inventory.SwapKeyItem.performed += SwapKeyItem;
         playerInput.Inventory.UseKeyItem.performed += UseKeyItem;
         ResetInventory();
+    }
+
+    private void ActionPerformed(InputAction.CallbackContext obj)
+    {
+        Debug.Log("Pressed");
+        Collider[] chests =
+            Physics.OverlapSphere(player.transform.position, 5, GlobalInventoryManager.instance.chestLayer, QueryTriggerInteraction.Collide);
+        if (chests.Length > 0)
+        {
+            Debug.Log("Worked");
+            if (chests[0].transform.TryGetComponent(out OpenItem item))
+            {
+                var pm = player.transform.parent.GetComponent<PlayerManager>();
+                Debug.Log("Recieved");
+                item.ActionPerformed(2, pm);
+            }
+
+            else
+            {
+                return;
+            }
+        }
     }
 
     private void Update()
@@ -164,32 +186,37 @@ public class InventoryManager2 : MonoBehaviour
 
     public void SubtractItem(ItemClass item, int amount)
     {
+        if(item == null)
+            return;
         switch (item.type)
         {
             case ItemType.Normal:
-                if(!(player2InventoryRef.ContainsKey(item) && player2Inventory.Contains(item) ))
-                    return;
-                player2InventoryRef[item] -= amount;
-        
-                player2InventoryRef[item] = Mathf.Clamp(player2InventoryRef[item], 0, 99);
-
-                if (player2InventoryRef[item] <= 0)
+                if ((player2InventoryRef.ContainsKey(item) && player2Inventory.Contains(item)))
                 {
-                    player2Inventory.Remove(item);
+                    player2InventoryRef[item] -= amount;
+
+                    player2InventoryRef[item] = Mathf.Clamp(player2InventoryRef[item], 0, 99);
+
+                    if (player2InventoryRef[item] <= 0)
+                    {
+                        player2Inventory.Remove(item);
+                    }
                 }
 
                 break;
             case ItemType.Key:
-                if(!(player2InventoryRef.ContainsKey(item) && player2KeyItems.Contains(item) ))
-                    return;
-                player2InventoryRef[item] -= amount;
-        
-                player2InventoryRef[item] = Mathf.Clamp(player2InventoryRef[item], 0, 1);
-
-                if (player2InventoryRef[item] <= 0)
+                if ((player2InventoryRef.ContainsKey(item) && player2KeyItems.Contains(item)))
                 {
-                    player2KeyItems.Remove(item);
+                    player2InventoryRef[item] -= amount;
+
+                    player2InventoryRef[item] = Mathf.Clamp(player2InventoryRef[item], 0, 1);
+
+                    if (player2InventoryRef[item] <= 0)
+                    {
+                        player2KeyItems.Remove(item);
+                    }
                 }
+
                 break;
             default:
                 return;

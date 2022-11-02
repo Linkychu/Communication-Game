@@ -16,11 +16,16 @@ namespace Enemy
         public int expAmount;
         public override void Death()
         {
-            PlayerClass[] players = FindObjectsOfType<PlayerClass>();
-            players[0].level.AddExp(Mathf.FloorToInt((expAmount * charBase.BaseHP * values.myStats.level) / (7f * PlayerStateManager.instance.alivePlayers.Count)));
-            players[1].level.AddExp(Mathf.FloorToInt((expAmount * charBase.BaseHP * values.myStats.level) / (7f * PlayerStateManager.instance.alivePlayers.Count)));
+            PlayerClass[] players = PlayerStateManager.instance.alivePlayers.ToArray();
+            Debug.Log(players[0]);
+            Debug.Log(players[1]);
 
-            gameObject.SetActive(false);
+            for (int i = 0; i < players.Length; i++)
+            {
+                players[i].level.AddExp(Mathf.FloorToInt((expAmount * charBase.BaseHP * values.myStats.level) / (7f * PlayerStateManager.instance.alivePlayers.Count)));
+            }
+
+            
             Destroy(gameObject);
         }
     }

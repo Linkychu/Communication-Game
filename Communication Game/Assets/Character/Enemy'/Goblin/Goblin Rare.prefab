@@ -490,7 +490,7 @@ MonoBehaviour:
   boostEffect: {fileID: 0}
   isStatsBoosted: 0
   targetCam: {fileID: 0}
-  expAmount: 0
+  expAmount: 200
 --- !u!114 &7055534869255929887
 MonoBehaviour:
   m_ObjectHideFlags: 0

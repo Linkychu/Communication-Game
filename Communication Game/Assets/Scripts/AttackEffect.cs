@@ -16,7 +16,7 @@ public class AttackEffect : MonoBehaviour
 
     private CharacterClass _class;
 
-    private Moves moveRef;
+    public Moves moveRef;
 
     private bool spawned = false;
 
@@ -45,7 +45,8 @@ public class AttackEffect : MonoBehaviour
 
         spawned = true;
     }
-    // Update is called once per frame
+
+        // Update is called once per frame
     void Update()
     {
         if(!spawned)

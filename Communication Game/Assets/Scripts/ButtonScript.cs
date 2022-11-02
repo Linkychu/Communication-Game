@@ -71,6 +71,13 @@ public class ButtonScript : MonoBehaviour
                 OtherPlayer = Player.Player2;
                 if(GlobalInventoryManager.instance.p1.player1Inventory.Count < id || GlobalInventoryManager.instance.p1.player1Inventory.Count == 0)
                     return;
+                if(GlobalInventoryManager.instance.p1.player1Inventory.ElementAtOrDefault(id) == null)
+                {
+                    Debug.Log("Fail");
+                    return;
+                }
+
+                Debug.Log("P1 " + id);
                 item = GlobalInventoryManager.instance.p1.player1Inventory[id];
                
                 break;
@@ -81,6 +88,12 @@ public class ButtonScript : MonoBehaviour
                 OtherPlayer = Player.Player1;
                 if(GlobalInventoryManager.instance.p2.player2Inventory.Count < id || GlobalInventoryManager.instance.p2.player2Inventory.Count == 0)
                     return;
+                Debug.Log("P2" + id);
+                if(GlobalInventoryManager.instance.p2.player2Inventory.ElementAtOrDefault(id) == null)
+                {
+                    Debug.Log("Fail");
+                    return;
+                }
                 item = GlobalInventoryManager.instance.p2.player2Inventory[id];
                 break;
             default:
@@ -296,17 +309,17 @@ public class ButtonScript : MonoBehaviour
          switch (OtherPlayer)
          {
              case Player.Player1:
-                 i = 1;
+                 item.UseItem(null, PlayerStateManager.instance.players[1]);
                  GlobalInventoryManager.instance.p1.CloseInventory();
-                 GlobalInventoryManager.instance.p1.SubtractItem(item, 1);
-                 break;
-             case Player.Player2:
-                 i = 0;
-                 GlobalInventoryManager.instance.p2.CloseInventory();
                  GlobalInventoryManager.instance.p2.SubtractItem(item, 1);
                  break;
+             case Player.Player2:
+                 item.UseItem(null, PlayerStateManager.instance.players[0]);
+                 GlobalInventoryManager.instance.p2.CloseInventory();
+                 GlobalInventoryManager.instance.p1.SubtractItem(item, 1);
+                 break;
          }
-         item.UseItem(null, PlayerStateManager.instance.players[i]);
+         
          
          
      }
