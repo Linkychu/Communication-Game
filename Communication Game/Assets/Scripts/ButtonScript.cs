@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,7 +8,12 @@ using UnityEngine.UI;
 
 public class ButtonScript : MonoBehaviour
 {
-    
+    public enum user
+    {
+        player1,
+        player2,
+        None
+    }
     enum Player
     {
         none,
@@ -29,7 +36,7 @@ public class ButtonScript : MonoBehaviour
     private TextMeshProUGUI confirmationText;
     private Player MainPlayer;
     private Player OtherPlayer;
-
+    public user User;
     private Button button;
     private int index;
 
@@ -47,37 +54,34 @@ public class ButtonScript : MonoBehaviour
     
     private void Start()
     {
-        amountInputted = 0;
-        inputText.text = String.Empty;
+        amountInputted = 1;
+        inputText.text = amountInputted.ToString();
         boxId = 0;
         button = GetComponent<Button>();
         text = informationScreen.GetComponentInChildren<TextMeshProUGUI>();
+        
         confirmationText = ConfirmationText.GetComponent<TextMeshProUGUI>();
         index = 0;
-        switch (gameObject.layer)
+        switch (User)
         {
-            case 18:
+            case user.player1:
                 isPlayer1 = true;
                 isPlayer2 = false;
-                
-                if(GlobalInventoryManager.instance.p1.player1Inventory.Count < id || GlobalInventoryManager.instance.p1.player1Inventory.Count == 0)
-                    return;
-                if (GlobalInventoryManager.instance.p1.player1Inventory[id] == null)
-                    return;
-                item = GlobalInventoryManager.instance.p1.player1Inventory[id];
                 MainPlayer = Player.Player1;
                 OtherPlayer = Player.Player2;
+                if(GlobalInventoryManager.instance.p1.player1Inventory.Count < id || GlobalInventoryManager.instance.p1.player1Inventory.Count == 0)
+                    return;
+                item = GlobalInventoryManager.instance.p1.player1Inventory[id];
+               
                 break;
-            case 19:
+            case user.player2:
                 isPlayer1 = false;
                 isPlayer2 = true;
-                if(GlobalInventoryManager.instance.p2.player2Inventory.Count < id || GlobalInventoryManager.instance.p2.player2Inventory.Count == 0)
-                    return;
-                if (GlobalInventoryManager.instance.p2.player2Inventory[id] == null)
-                    return;
-                item = GlobalInventoryManager.instance.p2.player2Inventory[id];
                 MainPlayer = Player.Player2;
                 OtherPlayer = Player.Player1;
+                if(GlobalInventoryManager.instance.p2.player2Inventory.Count < id || GlobalInventoryManager.instance.p2.player2Inventory.Count == 0)
+                    return;
+                item = GlobalInventoryManager.instance.p2.player2Inventory[id];
                 break;
             default:
                 isPlayer1 = false;
@@ -288,7 +292,23 @@ public class ButtonScript : MonoBehaviour
     
      void UseItem()
      {
-         item.UseItem();
+         int i = 0;
+         switch (OtherPlayer)
+         {
+             case Player.Player1:
+                 i = 1;
+                 GlobalInventoryManager.instance.p1.CloseInventory();
+                 GlobalInventoryManager.instance.p1.SubtractItem(item, 1);
+                 break;
+             case Player.Player2:
+                 i = 0;
+                 GlobalInventoryManager.instance.p2.CloseInventory();
+                 GlobalInventoryManager.instance.p2.SubtractItem(item, 1);
+                 break;
+         }
+         item.UseItem(null, PlayerStateManager.instance.players[i]);
+         
+         
      }
 
      void GiveItem(int amount)

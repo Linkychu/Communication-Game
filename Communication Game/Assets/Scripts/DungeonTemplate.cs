@@ -21,8 +21,8 @@ public enum MazePieces
     DeadEnd_Right,
     DeadEnd_Left,
     Wall,
-    Room
-
+    Room,
+    BossRoom
 };
 
 [CreateAssetMenu(fileName = "DungeonTemplate", menuName = "Data/DungeonTemplate")]
@@ -66,7 +66,6 @@ public class DungeonTemplate : ScriptableObject
     public Module DoorWayDown;
     public Module DoorWayRight;
     public Module DoorWayLeft;
-
     public LayerMask WallLayer;
 
     public GameObject BossStairRoom;

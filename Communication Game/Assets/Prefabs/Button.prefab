@@ -1954,7 +1954,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7936950622827529574}
         m_TargetAssemblyTypeName: ButtonScript, Assembly-CSharp
-        m_MethodName: GiveItemButton
+        m_MethodName: UseItemButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

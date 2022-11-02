@@ -25,6 +25,10 @@ TagManager:
   - Ally
   - EnemyP
   - OverworldCam
+  - FxTemporaire
+  - AttackEffect
+  - AttackEffectE
+  - GameManager
   layers:
   - Default
   - TransparentFX
@@ -46,7 +50,7 @@ TagManager:
   - Camera2
   - Player1UI
   - Player2UI
-  - 
+  - Map
   - 
   - 
   - 

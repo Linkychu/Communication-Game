@@ -12,6 +12,7 @@ public class InventoryManager1 : MonoBehaviour
     private Dictionary<ItemClass, int> player1InventoryRef = new Dictionary<ItemClass, int>();
 
     public List<ItemClass> player1Inventory = new List<ItemClass>();
+    public List<ItemClass> player1KeyItems = new List<ItemClass>();
 
     private bool canOpenInventory;
 
@@ -32,16 +33,27 @@ public class InventoryManager1 : MonoBehaviour
 
     public bool isInteracting;
 
-    
+    [Header("KeyItemsUI")] 
+    [SerializeField] private GameObject keyItemsUIObj;
 
+    [SerializeField] private Image KeyItemsImage;
+
+    private ItemClass currentSelectedKeyItem;
+    private bool firstKeyItem;
+    private int currentSelectedKeyItemIndex;
+    
+    private PlayerClass player;
     private void Awake()
     {
         instance = this;
         playerInput = new Player1();
+        player = GetComponentInChildren<PlayerClass>();
         playerInput.Inventory.OpenInventory.performed += OpenInventory;
         _movement = transform.GetComponentInChildren<PlayerOneMovement>();
         playerInput.Inventory.Interact.performed += context => isInteracting = true;
         playerInput.Inventory.Interact.canceled += context => isInteracting = false;
+        playerInput.Inventory.SwapKeyItem.performed += SwapKeyItem;
+        playerInput.Inventory.UseKeyItem.performed += UseKeyItem;
         screenWidth = canvas.worldCamera.pixelWidth;
         ResetInventory();
     }
@@ -93,55 +105,124 @@ public class InventoryManager1 : MonoBehaviour
     {
         canOpenInventory = true;
         inventoryOpen = canvas.gameObject.activeInHierarchy;
-        
-        
+        keyItemsUIObj.SetActive(false);
+        currentSelectedKeyItemIndex = 0;
+        currentSelectedKeyItem = null;
+        UpdateInventorySlots();
+
     }
 
     public void AddItem(ItemClass item, int amount)
     {
-        if (player1InventoryRef.ContainsKey(item))
+        switch (item.type)
         {
-            if (player1Inventory.Contains(item))
-            {
-                player1InventoryRef[item] += amount;
-            }
+            case ItemType.Normal:
 
-            else
-            {
-                player1Inventory.Add(item);
-                player1InventoryRef[item] = amount;
-            }
-        }
+                if (player1InventoryRef.ContainsKey(item))
+                {
+                    if (player1Inventory.Contains(item))
+                    {
+                        player1InventoryRef[item] += amount;
+                    }
 
-        else
-        {
-            player1InventoryRef.Add(item, amount);
-            player1Inventory.Add(item);
+                    else
+                    {
+
+                        player1Inventory.Add(item);
+                        player1InventoryRef[item] = amount;
+                    }
+                }
+
+                else
+                {
+                    player1InventoryRef.Add(item, amount);
+                    player1Inventory.Add(item);
+
+                }
+
+                player1InventoryRef[item] = Mathf.Clamp(player1InventoryRef[item], 0, 99);
+                break;
+            case ItemType.Key:
+                if (player1InventoryRef.ContainsKey(item))
+                {
+                    if (player1KeyItems.Contains(item))
+                    {
+                       return;
+                    }
+
+                    player1Inventory.Add(item);
+                    player1InventoryRef[item] = amount;
+                }
+
+                else
+                {
+                    
+                    player1InventoryRef.Add(item, amount);
+                    player1KeyItems.Add(item);
+                    
+                    
+                    if (firstKeyItem == false)
+                    {
+                        firstKeyItem = true;
+                        keyItemsUIObj.SetActive(true);
+                        LoadKeyItem();  
+                    }
+                    
+
+                }
             
+                player1InventoryRef[item] = Mathf.Clamp(player1InventoryRef[item], 0, 1);
+                break;
+            default:
+                break;
         }
-
-        player1InventoryRef[item] = Mathf.Clamp(player1InventoryRef[item], 0, 99);
         
-
+        UpdateInventorySlots();
     }
     
     
 
     public void SubtractItem(ItemClass item, int amount)
     {
-        if(!(player1InventoryRef.ContainsKey(item) && player1Inventory.Contains(item)))
-            return;
-        
-        
-        player1InventoryRef[item] -= amount;
-        
-        player1InventoryRef[item] = Mathf.Clamp(player1InventoryRef[item], 0, 99);
-
-        if (player1InventoryRef[item] <= 0)
+        switch (item.type)
         {
-            player1Inventory.Remove(item);
+            case ItemType.Normal:
+                if(!(player1InventoryRef.ContainsKey(item) && player1Inventory.Contains(item) ))
+                    return;
+                player1InventoryRef[item] -= amount;
+        
+                player1InventoryRef[item] = Mathf.Clamp(player1InventoryRef[item], 0, 99);
+
+                if (player1InventoryRef[item] <= 0)
+                {
+                    player1Inventory.Remove(item);
+                }
+
+                break;
+            case ItemType.Key:
+                if(!(player1InventoryRef.ContainsKey(item) && player1KeyItems.Contains(item) ))
+                    return;
+                player1InventoryRef[item] -= amount;
+        
+                player1InventoryRef[item] = Mathf.Clamp(player1InventoryRef[item], 0, 1);
+
+                if (player1InventoryRef[item] <= 0)
+                {
+                    player1KeyItems.Remove(item);
+                }
+                break;
+            default:
+                return;
+            
+                
+
         }
+      
+        
+        
        
+        UpdateInventorySlots();
+        LoadKeyItem();
     }
 
     public bool HasEnoughItem(ItemClass item, int amount)
@@ -153,9 +234,35 @@ public class InventoryManager1 : MonoBehaviour
         return player1InventoryRef[item] >= amount;
         
     }
-    
-    
-    
+
+    public void SwapKeyItem(InputAction.CallbackContext context)
+    {
+        Debug.Log("Pressed");
+        if(player1KeyItems.Count == 0)
+            return;
+        if (currentSelectedKeyItemIndex >= player1KeyItems.Count)
+        {
+            currentSelectedKeyItemIndex = 0;
+        }
+        else
+        {
+            currentSelectedKeyItemIndex += 1;
+        }
+       
+        LoadKeyItem(); 
+    }
+
+    void LoadKeyItem()
+    {
+        currentSelectedKeyItem = player1KeyItems[currentSelectedKeyItemIndex];
+        KeyItemsImage.sprite = currentSelectedKeyItem.image;
+    }
+
+    void UseKeyItem(InputAction.CallbackContext context)
+    {
+        currentSelectedKeyItem.UseItem(null, player);
+    }
+
 
 
     void UpdateInventorySlots()

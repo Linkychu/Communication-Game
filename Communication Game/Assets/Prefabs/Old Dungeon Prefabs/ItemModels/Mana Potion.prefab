@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1996366048236420537}
   m_Layer: 0
   m_Name: Mana Potion
-  m_TagString: Potion
+  m_TagString: Mana
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

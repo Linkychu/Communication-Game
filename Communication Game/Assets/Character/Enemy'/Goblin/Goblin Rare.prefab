@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c7cc5e38074c6c9c49c2309b2118fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseState: {fileID: 0}
+  chaseState: {fileID: 1216981199001778924}
   canSeeTarget: 0
 --- !u!1 &2930918797084296008
 GameObject:
@@ -2982,7 +2982,7 @@ GameObject:
   - component: {fileID: 6233886311452070859}
   m_Layer: 8
   m_Name: StateManager
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3062,7 +3062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e49d3b60d64cc284ac1ebf1677037b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackState: {fileID: 0}
+  attackState: {fileID: 5740238038616402301}
 --- !u!1 &8145989897682133468
 GameObject:
   m_ObjectHideFlags: 0
@@ -3108,12 +3108,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoolDownDuration: 1
-  effect: {fileID: 11400000, guid: b2ae09ecfe3f5b040ba5f002326c17d3, type: 2}
+  effect: {fileID: 11400000, guid: 534d8bac63d69744e9b8cfedc4ad653d, type: 2}
   effects: []
   charClass: {fileID: 0}
-  offset: {x: 0, y: 0, z: -1}
-  chaseState: {fileID: 0}
-  idleState: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
+  chaseState: {fileID: 1216981199001778924}
+  idleState: {fileID: 4963710812372631879}
   effectTime: 1
 --- !u!1 &8187848363780354141
 GameObject:
@@ -3249,6 +3249,10 @@ PrefabInstance:
     - target: {fileID: 8072770122737510971, guid: 0e96492826bf3fb44b31488bc5b73d06, type: 3}
       propertyPath: m_Name
       value: EnemyHUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418308603923993310, guid: 0e96492826bf3fb44b31488bc5b73d06, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e96492826bf3fb44b31488bc5b73d06, type: 3}

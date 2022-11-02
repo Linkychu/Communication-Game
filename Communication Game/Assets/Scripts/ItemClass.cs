@@ -5,18 +5,14 @@ using Characters;
 
 public enum ItemType
 {
-    Regular,
-    Gold,
-    Potion,
-    Mana,
-    Map,
-    BossKey
+   Normal,
+   Key
 }
 
 [CreateAssetMenu(fileName = "items1", menuName = "Data/Items", order = 0)]
 public class ItemClass : ScriptableObject
 {
-        
+    public string name;
     public int rateOfAppearing;
     public GameObject item;
     public ItemType type;
@@ -28,15 +24,15 @@ public class ItemClass : ScriptableObject
     public StatBoost Boost;
     public bool canUseItem = true;
 
-    public void UseItem()
+    public void UseItem(CharacterClass Class, PlayerClass player)
     {
         switch (type)
         {
-            case ItemType.Potion:
-                
+            case ItemType.Normal:
+                item.GetComponent<ItemBase>().UseItem(Class, player);
                 break;
-            
-            case ItemType.Mana:
+            case ItemType.Key:
+                item.GetComponent<KeyItemBase>().UseItem(Class, player);
                 break;
         }
     }

@@ -65,6 +65,7 @@ MonoBehaviour:
   type: 0
   itemClass: {fileID: 0}
   dialogueText: {fileID: 4900000, guid: 3bc89ff7942799d4fb2a47a35d900249, type: 3}
+  tooMuchText: {fileID: 4900000, guid: 4b268b0da7dfae64893e269f27d93097, type: 3}
 --- !u!1 &3303751763247602333
 GameObject:
   m_ObjectHideFlags: 0

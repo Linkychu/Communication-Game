@@ -76,7 +76,7 @@ public class Player2DialogueManager : MonoBehaviour
     }
 
     
-    public void DisplayDialogue(TextAsset dialogue, int id)
+    public void DisplayDialogue(TextAsset dialogue)
     {
         
         currentStory = new Story(dialogue.text);
@@ -84,6 +84,14 @@ public class Player2DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(true);
         ContinueStory();
        
+    }
+    
+    public void TooMuchItem(TextAsset item)
+    {
+        currentStory = new Story(item.text);
+        isDialoguePlaying = true;
+        dialoguePanel.SetActive(true);
+        ContinueStory();
     }
     
     public void DisplayNewItem(TextAsset dialogue, string Name, int amount)

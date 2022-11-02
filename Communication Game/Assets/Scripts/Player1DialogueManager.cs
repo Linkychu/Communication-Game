@@ -63,7 +63,7 @@ public class Player1DialogueManager : MonoBehaviour
 
     }
     
-    public void DisplayDialogue(TextAsset dialogue, int id)
+    public void DisplayDialogue(TextAsset dialogue)
     {
         
         currentStory = new Story(dialogue.text);
@@ -105,6 +105,13 @@ public class Player1DialogueManager : MonoBehaviour
         dialogueText.text = String.Empty;
     }
 
+    public void TooMuchItem(TextAsset item)
+    {
+        currentStory = new Story(item.text);
+        isDialoguePlaying = true;
+        dialoguePanel.SetActive(true);
+        ContinueStory();
+    }
     void ContinueStory()
     {
         

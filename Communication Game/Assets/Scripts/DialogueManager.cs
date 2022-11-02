@@ -35,7 +35,9 @@ public class DialogueManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
+        p1 = FindObjectOfType<Player1DialogueManager>();
+        p2 = FindObjectOfType<Player2DialogueManager>();
     }
 
     void Start()

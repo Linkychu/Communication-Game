@@ -23,23 +23,52 @@ public class PlayerCombat : MonoBehaviour
     private AnimationController _animator;
 
     private AttackEffect CurrentMove;
+
+    public PlayerState user;
     // Start is called before the first frame update
 
     private void OnEnable()
     {
-        player1Input.Combat.Enable();
+        switch (user)
+        {
+            case PlayerState.Player1:
+                player1Input.Combat.Enable();
+                break;
+            case PlayerState.Player2:
+                player2Input.Combat.Enable();
+                break;
+        }
+      
     }
 
     private void OnDisable()
     {
-        player1Input.Combat.Disable();
+        switch (user)
+        {
+            case PlayerState.Player1:
+                player1Input.Combat.Disable();
+                break;
+            case PlayerState.Player2:
+                player2Input.Combat.Disable();
+                break;
+        }
     }
 
     private void Awake()
     {
-        player1Input = new Player1();
-        player1Input.Combat.FirstAttack.performed += FirstAttackInput;
-        player1Input.Combat.HeavyAttack.performed += HeavyAttackInput;
+        switch (user)
+        {
+            case PlayerState.Player1:
+                player1Input = new Player1();
+                player1Input.Combat.FirstAttack.performed += FirstAttackInput;
+                player1Input.Combat.HeavyAttack.performed += HeavyAttackInput;
+                break;
+            case PlayerState.Player2:
+                player2Input = new Player2();
+                player2Input.Combat.FirstAttack.performed += FirstAttackInput;
+                player2Input.Combat.HeavyAttack.performed += HeavyAttackInput;
+                break;
+        }
     }
 
     public void FirstAttackInput(InputAction.CallbackContext context)
@@ -49,10 +78,15 @@ public class PlayerCombat : MonoBehaviour
             Destroy(CurrentMove.gameObject);
         }
         
-        LightAttack.Spawn((transform.position + offsetL), transform, transform.rotation.eulerAngles);
-        CurrentMove = LightAttack.effect;
-        LightAttack.setUser(myClass);
+        if(myClass.values.myStats.currentMana < LightAttack.manaCost)
+            return;
         _animator.AttackAnimation(1);
+        myClass.UseMana(LightAttack.manaCost);
+        LightAttack.Spawn( offsetL, transform, transform.rotation.eulerAngles, true);
+        LightAttack.setUser(myClass);
+        CurrentMove = LightAttack.effect;
+      
+       
     }
     private void HeavyAttackInput(InputAction.CallbackContext context)
     {
@@ -61,9 +95,14 @@ public class PlayerCombat : MonoBehaviour
             Destroy(CurrentMove.gameObject);
         }
         
-        HeavyAttack.Spawn(transform.position + offsetH + transform.forward, transform, transform.rotation.eulerAngles);
-        CurrentMove = HeavyAttack.effect;
+        if(myClass.values.myStats.currentMana < HeavyAttack.manaCost)
+            return;
+        _animator.AttackAnimation(1);
+        myClass.UseMana(HeavyAttack.manaCost);
+        HeavyAttack.Spawn(offsetH , transform, transform.rotation.eulerAngles, true);
         HeavyAttack.setUser(myClass);
+        CurrentMove = HeavyAttack.effect;
+      
     }
 
     

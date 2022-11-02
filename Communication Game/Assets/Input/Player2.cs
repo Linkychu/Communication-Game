@@ -61,7 +61,7 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6b3f2b11-437f-4215-b055-9f826cbbccd1"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
                     ""interactions"": ""Hold(duration=0.1)"",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
@@ -158,7 +158,7 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": """",
                     ""action"": ""Navigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -169,7 +169,7 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/rightStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": """",
                     ""action"": ""Navigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -180,7 +180,7 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": """",
                     ""action"": ""Navigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -191,7 +191,7 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/rightStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": """",
                     ""action"": ""Navigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -202,7 +202,7 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": """",
                     ""action"": ""Navigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -213,43 +213,32 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": """",
                     ""action"": ""Navigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""a941918a-89df-4247-850f-b1a4f05c7c5a"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""a99c7918-7fa1-4858-bf38-0a45061107ac"",
+                    ""id"": ""66280262-101e-4f2b-a3a6-94928b0e2530"",
                     ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": """",
                     ""action"": ""Navigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""2ce2aec3-d7ea-4910-9fea-059bfc1793a5"",
-                    ""path"": ""<Gamepad>/dpad"",
+                    ""name"": ""right"",
+                    ""id"": ""14d3fbc4-a771-4b40-8010-1e515c21f449"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad;Joystick"",
+                    ""groups"": """",
                     ""action"": ""Navigate"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""Joystick"",
@@ -312,7 +301,7 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
                     ""path"": ""*/{Submit}"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse;Gamepad;Touch;Joystick;XR"",
+                    ""groups"": ""Keyboard&Mouse;Touch;Joystick;XR"",
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -323,7 +312,7 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
                     ""path"": ""*/{Cancel}"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse;Gamepad;Touch;Joystick;XR"",
+                    ""groups"": ""Keyboard&Mouse;Touch;Joystick;XR"",
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -395,13 +384,31 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapKeyItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""a9ff73c0-83df-444b-b961-d183cf204d43"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseKeyItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""cc575448-8a19-41cf-bf3c-af6dcaa3a5f1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""894169e1-b3e4-4a8d-99dd-f782006b177d"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
@@ -417,6 +424,76 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Joystick"",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce2a3ded-82bd-45bb-94cc-fa4dfe274069"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""SwapKeyItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""95cbc9e3-3d96-480a-b8d5-f921102f185a"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""UseKeyItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Combat"",
+            ""id"": ""d6fe517c-6391-4bb8-bcd2-4a4d31d77157"",
+            ""actions"": [
+                {
+                    ""name"": ""First Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""4b550778-5349-4f01-91be-f9ed45ca2ab0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Heavy Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""307f873b-b14a-4a01-9bf6-6a22a9383e3f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=0.6)"",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f8f0a9b3-640a-40b9-9a8c-7073a0bb7b2d"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""First Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f5b7e26b-0817-4e4a-80e3-9ec670785c79"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Heavy Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -454,6 +531,12 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_OpenInventory = m_Inventory.FindAction("OpenInventory", throwIfNotFound: true);
         m_Inventory_Interact = m_Inventory.FindAction("Interact", throwIfNotFound: true);
+        m_Inventory_SwapKeyItem = m_Inventory.FindAction("SwapKeyItem", throwIfNotFound: true);
+        m_Inventory_UseKeyItem = m_Inventory.FindAction("UseKeyItem", throwIfNotFound: true);
+        // Combat
+        m_Combat = asset.FindActionMap("Combat", throwIfNotFound: true);
+        m_Combat_FirstAttack = m_Combat.FindAction("First Attack", throwIfNotFound: true);
+        m_Combat_HeavyAttack = m_Combat.FindAction("Heavy Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -646,12 +729,16 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
     private IInventoryActions m_InventoryActionsCallbackInterface;
     private readonly InputAction m_Inventory_OpenInventory;
     private readonly InputAction m_Inventory_Interact;
+    private readonly InputAction m_Inventory_SwapKeyItem;
+    private readonly InputAction m_Inventory_UseKeyItem;
     public struct InventoryActions
     {
         private @Player2 m_Wrapper;
         public InventoryActions(@Player2 wrapper) { m_Wrapper = wrapper; }
         public InputAction @OpenInventory => m_Wrapper.m_Inventory_OpenInventory;
         public InputAction @Interact => m_Wrapper.m_Inventory_Interact;
+        public InputAction @SwapKeyItem => m_Wrapper.m_Inventory_SwapKeyItem;
+        public InputAction @UseKeyItem => m_Wrapper.m_Inventory_UseKeyItem;
         public InputActionMap Get() { return m_Wrapper.m_Inventory; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -667,6 +754,12 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInteract;
+                @SwapKeyItem.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnSwapKeyItem;
+                @SwapKeyItem.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnSwapKeyItem;
+                @SwapKeyItem.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnSwapKeyItem;
+                @UseKeyItem.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnUseKeyItem;
+                @UseKeyItem.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnUseKeyItem;
+                @UseKeyItem.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnUseKeyItem;
             }
             m_Wrapper.m_InventoryActionsCallbackInterface = instance;
             if (instance != null)
@@ -677,10 +770,57 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @SwapKeyItem.started += instance.OnSwapKeyItem;
+                @SwapKeyItem.performed += instance.OnSwapKeyItem;
+                @SwapKeyItem.canceled += instance.OnSwapKeyItem;
+                @UseKeyItem.started += instance.OnUseKeyItem;
+                @UseKeyItem.performed += instance.OnUseKeyItem;
+                @UseKeyItem.canceled += instance.OnUseKeyItem;
             }
         }
     }
     public InventoryActions @Inventory => new InventoryActions(this);
+
+    // Combat
+    private readonly InputActionMap m_Combat;
+    private ICombatActions m_CombatActionsCallbackInterface;
+    private readonly InputAction m_Combat_FirstAttack;
+    private readonly InputAction m_Combat_HeavyAttack;
+    public struct CombatActions
+    {
+        private @Player2 m_Wrapper;
+        public CombatActions(@Player2 wrapper) { m_Wrapper = wrapper; }
+        public InputAction @FirstAttack => m_Wrapper.m_Combat_FirstAttack;
+        public InputAction @HeavyAttack => m_Wrapper.m_Combat_HeavyAttack;
+        public InputActionMap Get() { return m_Wrapper.m_Combat; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CombatActions set) { return set.Get(); }
+        public void SetCallbacks(ICombatActions instance)
+        {
+            if (m_Wrapper.m_CombatActionsCallbackInterface != null)
+            {
+                @FirstAttack.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnFirstAttack;
+                @FirstAttack.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnFirstAttack;
+                @FirstAttack.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnFirstAttack;
+                @HeavyAttack.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnHeavyAttack;
+                @HeavyAttack.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnHeavyAttack;
+                @HeavyAttack.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnHeavyAttack;
+            }
+            m_Wrapper.m_CombatActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @FirstAttack.started += instance.OnFirstAttack;
+                @FirstAttack.performed += instance.OnFirstAttack;
+                @FirstAttack.canceled += instance.OnFirstAttack;
+                @HeavyAttack.started += instance.OnHeavyAttack;
+                @HeavyAttack.performed += instance.OnHeavyAttack;
+                @HeavyAttack.canceled += instance.OnHeavyAttack;
+            }
+        }
+    }
+    public CombatActions @Combat => new CombatActions(this);
     private int m_JoystickSchemeIndex = -1;
     public InputControlScheme JoystickScheme
     {
@@ -710,5 +850,12 @@ public partial class @Player2 : IInputActionCollection2, IDisposable
     {
         void OnOpenInventory(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnSwapKeyItem(InputAction.CallbackContext context);
+        void OnUseKeyItem(InputAction.CallbackContext context);
+    }
+    public interface ICombatActions
+    {
+        void OnFirstAttack(InputAction.CallbackContext context);
+        void OnHeavyAttack(InputAction.CallbackContext context);
     }
 }

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca0f0d7e52941279c6fbdf244f9ba65, type: 3}
+  m_Name: SkeletonRBase 2
+  m_EditorClassIdentifier: 
+  Name: Skeleton Armored Soldier
+  BaseHP: 50
+  BaseAttack: 90
+  BaseDefense: 50
+  BaseSpecialAttack: 90
+  BaseSpecialDefence: 50
+  BaseSpeed: 50
+  BaseManaAmount: 80
+  type: {fileID: 11400000, guid: 2f190da0853952a438d67a55f40a3e78, type: 2}
+  myStatus: 0
+  BaseClass: 0
+  DeathMessage: {fileID: 0}

@@ -94,7 +94,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   BossStairRoom: {fileID: 3453897193734796206, guid: 90cce2741db9f2648bbdb11ef1206268, type: 3}
-  BossRoom: {fileID: 0}
+  BossRoom: {fileID: 3453897193734796206, guid: 90cce2741db9f2648bbdb11ef1206268, type: 3}
   enemies:
   - {fileID: 11400000, guid: 1bb629e7cf3398b4c864f03c0b94cae6, type: 2}
   - {fileID: 11400000, guid: 34911dc6c53dc4b4b8e54dfef1415097, type: 2}
+  - {fileID: 11400000, guid: 2e357c0d31b9f314eb6323c060b92fe6, type: 2}
+  - {fileID: 11400000, guid: 8a0cc49201aa9844b9f581adcf6574f0, type: 2}
+  - {fileID: 11400000, guid: bf5547a43b3474c48b0d46ad702d487d, type: 2}

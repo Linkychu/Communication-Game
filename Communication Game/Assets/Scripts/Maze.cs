@@ -6,7 +6,7 @@ using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
-
+using Random = System.Random;
 
 
 public class MapLocation
@@ -48,7 +48,7 @@ public class Maze : MonoBehaviour
     public Vector2Int size = new Vector2Int(30, 30);
     public byte[,] map;
     public int scale = 6;
-    public Transform[] players;
+    public PlayerClass[] players;
     public int roomCount = 5;
     public Vector2Int roomCountSize = new Vector2Int(3, 6);
     public bool finishedLoadingMap = false;
@@ -113,6 +113,7 @@ public class Maze : MonoBehaviour
 
     private void Start()
     {
+        players = FindObjectsOfType<PlayerClass>();
         BuildMaze();
     }
     
@@ -188,9 +189,28 @@ public class Maze : MonoBehaviour
         }
     }
 
+    private bool SpawnBossDoor(int index, Vector3 position)
+    {
+        if (Vector3.Distance(position, Vector3.zero) > minimumStairDistance)
+        {
+            if (index == 1)
+            {
+                generated = true;
+            }
+        }
+        
+        else
+        {
+            generated = false;
+        }
+        
+        return generated;
+    }
     public void GenerateMap()
     {
-        
+
+       
+
         //Instantiate(TemplateData.BossStairRoom, algorithm.goalLocation, Quaternion.identity);
         for (int z = 0; z < size.y; z++)
         {
@@ -242,7 +262,20 @@ public class Maze : MonoBehaviour
                 else if (Search2D(x, z, new[] {5, 1, 5, 0, 0, 1, 5, 1, 5}))
                 {
                     var pos = new Vector3(x * scale, 0, z * scale);
-                    var piece = Instantiate(TemplateData.EndpieceRight.prefab, pos, Quaternion.identity);
+                    GameObject piece = null;
+                    if (!generated && (SpawnBossDoor(SeededRandom.Range(0, 2), pos)))
+                    {
+                       piece  = Instantiate(TemplateData.BossRoom, pos, Quaternion.identity);
+                       
+                    }
+
+                    else
+                    {
+                        piece = Instantiate(TemplateData.EndpieceRight.prefab, pos, Quaternion.identity);
+                      
+                    }
+
+                     
                     piece.transform.parent = gameObject.transform;
                     piece.transform.Rotate(TemplateData.EndpieceRight.rotation);
                     piecePlaces[x, z].piece = MazePieces.DeadEnd_Right;
@@ -252,32 +285,46 @@ public class Maze : MonoBehaviour
                 else if (Search2D(x, z, new[] {5, 1, 5, 1, 0, 0, 5, 1, 5}))
                 {
                     var pos = new Vector3(x * scale, 0, z * scale);
-                    var piece = Instantiate(TemplateData.EndpieceLeft.prefab, pos, Quaternion.identity);
-                    piece.transform.Rotate(TemplateData.EndpieceLeft.rotation);
-                    piece.transform.parent = gameObject.transform;
+                    GameObject piece = null;
+                    piece = !generated && (SpawnBossDoor(SeededRandom.Range(0, 2), pos))
+                        ? Instantiate(TemplateData.BossRoom, pos, Quaternion.identity)
+                        : Instantiate(TemplateData.EndpieceLeft.prefab, pos, Quaternion.identity);
 
+                    piece.transform.parent = gameObject.transform;
+                    piece.transform.Rotate(TemplateData.EndpieceLeft.rotation);
                     piecePlaces[x, z].piece = MazePieces.DeadEnd_Left;
                     piecePlaces[x, z].model = piece;
+
                 }
 
                 else if (Search2D(x, z, new[] {5, 1, 5, 1, 0, 1, 5, 0, 5}))
                 {
                     var pos = new Vector3(x * scale, 0, z * scale);
-                       GameObject piece = Instantiate(TemplateData.Endpiece.prefab, pos, Quaternion.identity);
-                    piece.transform.Rotate(TemplateData.Endpiece.rotation);
+                    GameObject piece = null;
+                    piece = !generated && (SpawnBossDoor(SeededRandom.Range(0, 2), pos))
+                        ? Instantiate(TemplateData.BossRoom, pos, Quaternion.identity)
+                        : Instantiate(TemplateData.Endpiece.prefab, pos, Quaternion.identity);
+
                     piece.transform.parent = gameObject.transform;
+                    piece.transform.Rotate(TemplateData.Endpiece.rotation);
                     piecePlaces[x, z].piece = MazePieces.DeadEnd;
                     piecePlaces[x, z].model = piece;
+
                 }
 
                 else if (Search2D(x, z, new[] {5, 0, 5, 1, 0, 1, 5, 1, 5}))
                 {
                     var pos = new Vector3(x * scale, 0, z * scale);
-                    var piece = Instantiate(TemplateData.EndpieceUpsideDown.prefab, pos, Quaternion.identity);
-                    piece.transform.Rotate(TemplateData.EndpieceUpsideDown.rotation);
+                    GameObject piece = null;
+                    piece = !generated && (SpawnBossDoor(SeededRandom.Range(0, 2), pos))
+                        ? Instantiate(TemplateData.BossRoom, pos, Quaternion.identity)
+                        : Instantiate(TemplateData.EndpieceUpsideDown.prefab, pos, Quaternion.identity);
+
                     piece.transform.parent = gameObject.transform;
+                    piece.transform.Rotate(TemplateData.EndpieceUpsideDown.rotation);
                     piecePlaces[x, z].piece = MazePieces.DeadEnd_UpisdeDown;
                     piecePlaces[x, z].model = piece;
+
                 }
 
                 else if (Search2D(x, z, new[] {5, 1, 5, 0, 0, 1, 1, 0, 5}))
@@ -649,10 +696,19 @@ public class Maze : MonoBehaviour
     void GenerateMiscellaneous()
     {
         PlacePlayer();
-        GenerateStairCase();
-        BakeLighting();
-        StartCoroutine(BakeNavmesh());
-        itemManager.Generate();
+        if (generated)
+        {
+            GenerateStairCase();
+            StartCoroutine(BakeNavmesh());
+            itemManager.Generate();
+        }
+
+        else
+        {
+            BuildMaze();
+        }
+
+       
         
 
     }
@@ -661,8 +717,6 @@ public class Maze : MonoBehaviour
     
     void GenerateStairCase()
     {
-        bool finished = false;
-        int count = 0;
         
         GameObject[] stairs = GameObject.FindGameObjectsWithTag("StairSpawn");
 
@@ -671,48 +725,17 @@ public class Maze : MonoBehaviour
             BuildMaze();
         }
         
-        while (true && count < 50000 && stairs.Length > 0)
-        {
-            int index = SeededRandom.Range(0, stairs.Length);
-            
-            if (Vector3.Distance(stairs[index].transform.position, playerpositionref) > minimumStairDistance)
-            {
-                Vector3 pos = stairs[index].transform.position;
-                Quaternion rotation = stairs[index].transform.rotation;
-                var BossRoom = Instantiate(TemplateData.BossStairRoom, pos, rotation, transform);
-
-                astar = BossRoom.transform;
-                finished = true;
-                validPath = true;
-                foreach (var player in players)
-                {
-                    player.gameObject.SetActive(true);
-                }
-                //Debug.Log(Colliders.Count);
-            }
-
-            else
-            {
-                count++;
-                continue;
-            }
-
-
-            break;
-        }
-
-        if (!finished)
-        {
-            BuildMaze();
-        }
-    }
-
-    void BakeLighting()
-    {
-
-    }
-    
        
+        validPath = true;
+        foreach (var player in players)
+        {
+            player.gameObject.SetActive(true);
+        }
+                //Debug.Log(Colliders.Count);
+                
+    }
+
+    
     void SpawnEnemies()
     {
         List<Vector3> enemyPositions = new List<Vector3>();
@@ -803,26 +826,41 @@ public class Maze : MonoBehaviour
     
     protected virtual void PlacePlayer()
     {
+        List<Vector3> possibleSpawnLocations = new List<Vector3>();
         for (int z = 0; z < size.y; z++)
         {
             for (int x = 0; x < size.x; x++)
             {
                 if (map[x, z] == 0)
                 {
-                    for (int index = 0; index < players.Length; index++)
+                    if (possibleSpawnLocations.Count < 10)
                     {
-                        var player = players[index];
-                       
-
-                        player.position = (new Vector3(x * scale + index, player.transform.position.y, z * scale));
-
-                        playerpositionref = player.position;
+                        possibleSpawnLocations.Add(new Vector3(x * scale, 0.1f, z * scale));
                     }
+
+                    else
+                    {
+                        break;
+                    }
+                   
                 }
             }
         }
 
+        int randomA = 0, randomB = 0;
+        int spawnCount = 0;
+        while (randomA == randomB && spawnCount < 200)
+        {
+            randomA = SeededRandom.Range(0, 5);
+            randomB = SeededRandom.Range(0, 5);
+            spawnCount++;
+        }
         
+        Vector3 randomPostionA = possibleSpawnLocations[randomA];
+        Vector3 randomPositionB = possibleSpawnLocations[randomB];
+
+        players[0].transform.position = randomPostionA;
+        players[1].transform.position = randomPositionB;
         finishedLoadingMap = true;
     }
 

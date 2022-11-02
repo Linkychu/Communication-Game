@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963cafa76f854e7f8f8d08b2729d5a1e, type: 3}
   m_Name: Goblin
   m_EditorClassIdentifier: 
-  enemy: {fileID: 2930918797084299666, guid: 270b3207d959fd34a97bcbedb0bf0b01, type: 3}
+  enemy: {fileID: 7708341999622479289, guid: d1b498bbef2367f44857de12774964b6, type: 3}
   chanceToSpawn: 20

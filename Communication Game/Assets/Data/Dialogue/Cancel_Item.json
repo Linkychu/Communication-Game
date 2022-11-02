@@ -1,0 +1,1 @@
+﻿{"inkVersion":20,"root":[[[{"->":"main"},["done",{"#f":5,"#n":"g-1"}],{"#f":5,"#n":"g-0"}],null],"done",{"main":["^The you have the max amount for this item, so this item was left in the chest. Let the other player know where this chest is!","\n","end",{"#f":1}],"global decl":["ev","str","^","/str",{"VAR=":"player"},"/ev","end",null],"#f":1}],"listDefs":{}}

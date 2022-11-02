@@ -18,7 +18,10 @@ public class GlobalInventoryManager : MonoBehaviour
     
     private void Awake()
     {
+        
         instance = this;
+        p1 = FindObjectOfType<InventoryManager1>();
+        p2 = FindObjectOfType<InventoryManager2>();
     }
 
     public void SendItem(ItemClass item, int amount,  PlayerState playerState)

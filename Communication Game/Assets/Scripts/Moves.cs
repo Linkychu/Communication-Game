@@ -7,7 +7,8 @@ using Characters;
 public enum MoveType
 {
     Physical,
-    Special
+    Special,
+    Healing
 };
 [CreateAssetMenu(fileName = "Move", menuName = "Data/Moves") ]
 public class Moves : ScriptableObject
@@ -22,17 +23,45 @@ public class Moves : ScriptableObject
     public bool shouldMove;
     public bool isDynamicRanged;
     public GameObject model;
+    public int HealHealthAmount;
+    public int HealManaAmount;
     private CharacterClass user;
     [HideInInspector]
     public AttackEffect effect;
+
+    [SerializeField]private bool shouldStayInPlace;
     
     
-    
-    public void Spawn(Vector3 position, Transform transform, Vector3 rotation)
+    public void Spawn(Vector3 position, Transform transform, Vector3 rotation, bool isPlayer)
     {
         Moves move = Instantiate(this);
-        var clone = Instantiate(model, position, Quaternion.Euler(rotation + rotationOffset), transform);
+        GameObject clone = null;
+        
+       
+        
+        if(isPlayer)
+        {
+            
+            if (shouldStayInPlace)
+            {
+                clone = Instantiate(model, transform.position , transform.rotation, transform);
+            }
+
+            else
+            {
+                clone = Instantiate(model, transform.position + (transform.forward * position.z) + transform.forward, transform.rotation, transform);
+
+            }
+        }
+
+        else
+        {
+            clone = Instantiate(model, position, Quaternion.identity, transform);
+        }
+        
         effect = clone.GetComponent<AttackEffect>();
+      
+        
         effect.Spawn(move,shouldMove);
         
     }

@@ -173,6 +173,24 @@ public partial class @Player1 : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapKeyItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ca71231-c896-43e3-9c5b-97c5cf57d2cc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseKeyItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f2a4f53-6ea5-409c-9a1f-b013c751283a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -206,6 +224,28 @@ public partial class @Player1 : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""495e8090-0a9c-4bce-bb8f-96e22fadc93a"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""SwapKeyItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20c345fb-8374-4add-af7f-d3a0a036e29a"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""UseKeyItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -578,6 +618,8 @@ public partial class @Player1 : IInputActionCollection2, IDisposable
         m_Inventory_OpenInventory = m_Inventory.FindAction("OpenInventory", throwIfNotFound: true);
         m_Inventory_MousePosition = m_Inventory.FindAction("MousePosition", throwIfNotFound: true);
         m_Inventory_Interact = m_Inventory.FindAction("Interact", throwIfNotFound: true);
+        m_Inventory_SwapKeyItem = m_Inventory.FindAction("SwapKeyItem", throwIfNotFound: true);
+        m_Inventory_UseKeyItem = m_Inventory.FindAction("UseKeyItem", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -729,6 +771,8 @@ public partial class @Player1 : IInputActionCollection2, IDisposable
     private readonly InputAction m_Inventory_OpenInventory;
     private readonly InputAction m_Inventory_MousePosition;
     private readonly InputAction m_Inventory_Interact;
+    private readonly InputAction m_Inventory_SwapKeyItem;
+    private readonly InputAction m_Inventory_UseKeyItem;
     public struct InventoryActions
     {
         private @Player1 m_Wrapper;
@@ -736,6 +780,8 @@ public partial class @Player1 : IInputActionCollection2, IDisposable
         public InputAction @OpenInventory => m_Wrapper.m_Inventory_OpenInventory;
         public InputAction @MousePosition => m_Wrapper.m_Inventory_MousePosition;
         public InputAction @Interact => m_Wrapper.m_Inventory_Interact;
+        public InputAction @SwapKeyItem => m_Wrapper.m_Inventory_SwapKeyItem;
+        public InputAction @UseKeyItem => m_Wrapper.m_Inventory_UseKeyItem;
         public InputActionMap Get() { return m_Wrapper.m_Inventory; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -754,6 +800,12 @@ public partial class @Player1 : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnInteract;
+                @SwapKeyItem.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnSwapKeyItem;
+                @SwapKeyItem.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnSwapKeyItem;
+                @SwapKeyItem.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnSwapKeyItem;
+                @UseKeyItem.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnUseKeyItem;
+                @UseKeyItem.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnUseKeyItem;
+                @UseKeyItem.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnUseKeyItem;
             }
             m_Wrapper.m_InventoryActionsCallbackInterface = instance;
             if (instance != null)
@@ -767,6 +819,12 @@ public partial class @Player1 : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @SwapKeyItem.started += instance.OnSwapKeyItem;
+                @SwapKeyItem.performed += instance.OnSwapKeyItem;
+                @SwapKeyItem.canceled += instance.OnSwapKeyItem;
+                @UseKeyItem.started += instance.OnUseKeyItem;
+                @UseKeyItem.performed += instance.OnUseKeyItem;
+                @UseKeyItem.canceled += instance.OnUseKeyItem;
             }
         }
     }
@@ -932,6 +990,8 @@ public partial class @Player1 : IInputActionCollection2, IDisposable
         void OnOpenInventory(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnSwapKeyItem(InputAction.CallbackContext context);
+        void OnUseKeyItem(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

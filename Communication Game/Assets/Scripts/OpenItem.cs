@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 using UnityEngine.InputSystem;
 
 
@@ -32,6 +33,7 @@ public class OpenItem : MonoBehaviour
     public ItemClass itemClass;
 
     [SerializeField] private TextAsset dialogueText;
+    [SerializeField] private TextAsset tooMuchText;
 
     private int playerId;
 
@@ -168,11 +170,50 @@ public class OpenItem : MonoBehaviour
             {
                 case 1:
                     manager.GetComponentInChildren<PlayerOneMovement>().canMove = true;
-                    GlobalInventoryManager.instance.p1.AddItem(itemClass, amount);
+                    switch (itemClass.type)
+                    {
+                        case ItemType.Key:
+                            if (hasEnoughKeyItem(itemClass, PlayerState.Player1))
+                            {
+                                GlobalInventoryManager.instance.p1.AddItem(itemClass, amount);
+                            }
+
+                            else
+                            {
+                                DialogueManager.instance.p1.TooMuchItem(tooMuchText);
+                                transform.GetChild(0).gameObject.SetActive(true);
+                                transform.GetChild(1).gameObject.SetActive(false);
+                                
+                            }
+                            break;
+                        default:
+                            GlobalInventoryManager.instance.p1.AddItem(itemClass, amount);
+                            break;
+                    }
+                   
                     break;
                 case 2:
                     manager.GetComponentInChildren<PlayerTwoMovement>().canMove = true;   
-                    GlobalInventoryManager.instance.p2.AddItem(itemClass, amount);
+                    switch (itemClass.type)
+                    {
+                        case ItemType.Key:
+                            if (hasEnoughKeyItem(itemClass, PlayerState.Player2))
+                            {
+                                GlobalInventoryManager.instance.p2.AddItem(itemClass, amount);
+                            }
+
+                            else
+                            {
+                                DialogueManager.instance.p2.TooMuchItem(tooMuchText);
+                                transform.GetChild(0).gameObject.SetActive(true);
+                                transform.GetChild(1).gameObject.SetActive(false);
+                            }
+                            break;
+                        default:
+                            GlobalInventoryManager.instance.p2.AddItem(itemClass, amount);
+                            break;
+                    }
+                    
                     break;
             }
 
@@ -182,8 +223,42 @@ public class OpenItem : MonoBehaviour
                 GameManager.instance.CheckForMap(true);
             }*/
 
-
+            
 
         }
+        
+        
+    }
+
+    public bool hasEnoughKeyItem(ItemClass x, PlayerState state)
+    {
+        switch (state)
+        {
+            case PlayerState.Player1:
+                if (GlobalInventoryManager.instance.p1.player1KeyItems.Any(items => items.name == x.name))
+                {
+                    return false;
+                }
+
+                else
+                {
+                    return true;
+                }
+                
+                break;
+            case PlayerState.Player2:
+                if (GlobalInventoryManager.instance.p2.player2KeyItems.Any(items => items.name == x.name))
+                {
+                    return false;
+                }
+
+                else
+                {
+                    return true;
+                }
+                break;
+        }
+
+        return false;
     }
 }

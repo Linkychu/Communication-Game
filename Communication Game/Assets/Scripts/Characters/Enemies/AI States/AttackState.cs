@@ -70,7 +70,7 @@ namespace Data.AI
                         charClass.values.myStats.currentMana -= effect.manaCost;
                         CoolDownDuration = effectTime + effect.lifetime;
                         effectRef = effect;
-                        effectRef.Spawn(EnemyAi.target.position + offset, transform, transform.rotation.eulerAngles);
+                        effectRef.Spawn(EnemyAi.target.position + transform.forward, transform, transform.rotation.eulerAngles, false);
                         effectRef.setUser(charClass);
                         effectObj = effectRef.effect;
 
@@ -98,7 +98,7 @@ namespace Data.AI
 
             else
             {
-                yield return new WaitForSeconds(CoolDownDuration * 2);
+                yield return new WaitForSeconds(CoolDownDuration);
 
             }
           

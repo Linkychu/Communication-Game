@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eda6397cb36ea6943bbb1eabb02323cf, type: 3}
   m_Name: WarriorSlashL
   m_EditorClassIdentifier: 
-  baseDamage: 50
+  baseDamage: 0
   type: 0
-  affinity: {fileID: 11400000, guid: 707252f8938f65f4d901be4f05c3ad8b, type: 2}
+  affinity: {fileID: 11400000, guid: c55095c566dcb0647b06d8bd6f2c2216, type: 2}
   manaCost: 0
   rotationOffset: {x: 0, y: 0, z: 0}
-  range: 3
+  range: 2
   lifetime: 1
   shouldMove: 0
   isDynamicRanged: 0
