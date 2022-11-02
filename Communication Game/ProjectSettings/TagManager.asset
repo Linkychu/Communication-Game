@@ -29,6 +29,11 @@ TagManager:
   - AttackEffect
   - AttackEffectE
   - GameManager
+  - Generator
+  - ArmL
+  - ArmR
+  - Spawn
+  - BossGenerator
   layers:
   - Default
   - TransparentFX

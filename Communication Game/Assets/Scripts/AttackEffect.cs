@@ -74,8 +74,11 @@ public class AttackEffect : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.gameObject.CompareTag("AttackEffect"))
         {
+            if(other.GetComponent<AttackEffect>()._class != _class)
+                return;
             bonus = 1.5f;
             Debug.Log("Bonus");
         }

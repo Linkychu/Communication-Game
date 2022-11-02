@@ -31,20 +31,13 @@ public class BossKeyCheckScript : MonoBehaviour
         if (hasOneKey && hasTwoKey)
 
         {
-            OpenDoor();
+            OpenDoor(); 
 
         }
         
     }
 
-    private void LateUpdate()
-    {
-        if (hasOneKey || hasTwoKey)
-        {
-            hasOneKey = false;
-            hasTwoKey = false;
-        }
-    }
+   
 
     void OpenDoor()
     {
